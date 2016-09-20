@@ -1,3 +1,3 @@
 framework module MeppSDK {
-    header "/Users/patrick/Developer/mepp/mepp-ios-sdk/MeppSDK/MeppSDK-Swift.h"
+    header "MeppSDK-Swift.h"
 }
