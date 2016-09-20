@@ -27,5 +27,4 @@ Pod::Spec.new do |spec|
   spec.dependency 'AlamofireObjectMapper', '3.0.2'
   spec.dependency 'ReachabilitySwift', '2.3.3'
   spec.dependency 'KontaktSDK', '1.2.2'
-  spec.dependency 'GoogleAnalytics', '3.17.0'
 end
