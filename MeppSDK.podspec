@@ -2,8 +2,8 @@ Pod::Spec.new do |spec|
   spec.name                    = 'MeppSDK'
   spec.version                 = '1.0.1'
   spec.summary                 = 'Mepp SDK for iOS'
-  spec.author                  = { "MEPP" => "office@mopius.at" }
-  spec.homepage                = "https://www.mepp.at"
+  spec.author                  = { 'MEPP' => 'office@mopius.at' }
+  spec.homepage                = 'https://www.mepp.at'
   spec.license                 = { :type => 'CC-ND', :file => 'LICENSE' }
 
   spec.module_name             = 'MeppSDK'
