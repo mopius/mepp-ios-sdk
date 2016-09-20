@@ -1,3 +1,10 @@
 framework module MeppSDK {
+  umbrella header "MeppSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module MeppSDK.Swift {
     header "MeppSDK-Swift.h"
 }

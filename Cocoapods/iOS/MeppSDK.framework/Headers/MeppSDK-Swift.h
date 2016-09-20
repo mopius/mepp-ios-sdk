@@ -110,10 +110,6 @@ SWIFT_CLASS("_TtC7MeppSDK17MeppBeaconManager")
 - (void)stopMonitoringForRegion:(KTKBeaconRegion * _Nullable)region;
 @end
 
-
-@interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK))
-@end
-
 @class KTKDevicesManager;
 @class KTKNearbyDevice;
 @class NSError;
@@ -121,6 +117,10 @@ SWIFT_CLASS("_TtC7MeppSDK17MeppBeaconManager")
 @interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK)) <KTKDevicesManagerDelegate>
 - (void)devicesManager:(KTKDevicesManager * _Nonnull)manager didDiscoverDevices:(NSArray<KTKNearbyDevice *> * _Nullable)devices;
 - (void)devicesManagerDidFailToStartDiscovery:(KTKDevicesManager * _Nonnull)manager withError:(NSError * _Nullable)error;
+@end
+
+
+@interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK))
 @end
 
 @class KTKBeaconManager;
@@ -145,16 +145,16 @@ SWIFT_CLASS("_TtC7MeppSDK23MeppDeviceStatusManager")
 - (void)startBluetoothNotifier;
 @end
 
-@class CLLocationManager;
-
-@interface MeppDeviceStatusManager (SWIFT_EXTENSION(MeppSDK)) <CLLocationManagerDelegate>
-- (void)locationManager:(CLLocationManager * _Nonnull)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status;
-@end
-
 @class CBCentralManager;
 
 @interface MeppDeviceStatusManager (SWIFT_EXTENSION(MeppSDK)) <CBCentralManagerDelegate>
 - (void)centralManagerDidUpdateState:(CBCentralManager * _Nonnull)central;
+@end
+
+@class CLLocationManager;
+
+@interface MeppDeviceStatusManager (SWIFT_EXTENSION(MeppSDK)) <CLLocationManagerDelegate>
+- (void)locationManager:(CLLocationManager * _Nonnull)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status;
 @end
 
 
