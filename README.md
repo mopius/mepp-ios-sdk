@@ -6,7 +6,7 @@ This document shows you a quick way to start using the MEPP SDK in your apps.
 
 ## Installing iOS SDK
 
-To use the MEPP SDK in your project, the minimum deployment target must be iOS 9.0.
+To use the MEPP SDK in your project, the minimum deployment target must be iOS 8.0.
 
 ### CocoaPods
 
