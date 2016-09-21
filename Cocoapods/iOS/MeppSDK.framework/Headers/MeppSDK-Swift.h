@@ -105,26 +105,67 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 @interface CBCentralManager (SWIFT_EXTENSION(MeppSDK))
 @end
 
+
+SWIFT_CLASS("_TtC7MeppSDK7Content")
+@interface Content : NSObject
+
+/// The type of the content.
+@property (nonatomic, copy) NSString * _Nullable contentType;
+
+/// This indicates the date from which a content is active.
+@property (nonatomic, copy) NSString * _Nullable activeDateStart;
+@property (nonatomic, copy) NSString * _Nullable activeDateStop;
+@property (nonatomic, copy) NSString * _Nullable activeTimeStart;
+@property (nonatomic, copy) NSString * _Nullable activeTimeStop;
+
+/// This extra infos as a dictionary (e.g. the legal text).
+@property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull extraInfo;
+@end
+
+@class NSNumber;
+@class KTKNearbyDevice;
+
+SWIFT_CLASS("_TtC7MeppSDK16DiscoveredBeacon")
+@interface DiscoveredBeacon : NSObject
+@property (nonatomic, copy) NSString * _Nonnull identifier;
+@property (nonatomic) NSInteger transmissionPower;
+@property (nonatomic, copy) NSString * _Nonnull firmwareVersion;
+@property (nonatomic) NSUInteger batteryLevel;
+@property (nonatomic, strong) NSNumber * _Nonnull rssi;
+- (nonnull instancetype)initFromKontaktBeacon:(KTKNearbyDevice * _Nonnull)beacon OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC7MeppSDK13MeppAPIClient")
+@interface MeppAPIClient : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithAppToken:(NSString * _Nonnull)appToken apiHost:(NSString * _Nonnull)apiHost OBJC_DESIGNATED_INITIALIZER;
+
+/// Get content by id.
+- (void)contentById:(NSInteger)id user:(NSString * _Nonnull)user completion:(void (^ _Nonnull)(BOOL succesful, Content * _Nullable content))completion;
+@end
+
+@protocol MeppBeaconManagerDelegate;
 @class KTKBeaconRegion;
 
 SWIFT_CLASS("_TtC7MeppSDK17MeppBeaconManager")
 @interface MeppBeaconManager : NSObject
+@property (nonatomic, strong) id <MeppBeaconManagerDelegate> _Nullable delegate;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (void)startMonitoring;
 - (void)stopMonitoringForRegion:(KTKBeaconRegion * _Nullable)region;
 @end
 
+
+@interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK))
+@end
+
 @class KTKDevicesManager;
-@class KTKNearbyDevice;
 @class NSError;
 
 @interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK)) <KTKDevicesManagerDelegate>
 - (void)devicesManager:(KTKDevicesManager * _Nonnull)manager didDiscoverDevices:(NSArray<KTKNearbyDevice *> * _Nullable)devices;
 - (void)devicesManagerDidFailToStartDiscovery:(KTKDevicesManager * _Nonnull)manager withError:(NSError * _Nullable)error;
-@end
-
-
-@interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK))
 @end
 
 @class KTKBeaconManager;
@@ -136,6 +177,14 @@ SWIFT_CLASS("_TtC7MeppSDK17MeppBeaconManager")
 - (void)beaconManager:(KTKBeaconManager * _Nonnull)manager didEnterRegion:(KTKBeaconRegion * _Nonnull)region;
 - (void)beaconManager:(KTKBeaconManager * _Nonnull)manager didExitRegion:(KTKBeaconRegion * _Nonnull)region;
 - (void)beaconManager:(KTKBeaconManager * _Nonnull)manager didRangeBeacons:(NSArray<CLBeacon *> * _Nonnull)beacons inRegion:(KTKBeaconRegion * _Nonnull)region;
+@end
+
+
+SWIFT_PROTOCOL("_TtP7MeppSDK25MeppBeaconManagerDelegate_")
+@protocol MeppBeaconManagerDelegate
+- (void)didFindNewContent:(Content * _Nonnull)content;
+- (void)didChangeSessionStatus:(NSString * _Nonnull)status critical:(BOOL)critical;
+- (void)didDiscoverBeacons:(NSArray<DiscoveredBeacon *> * _Nonnull)beacons;
 @end
 
 
