@@ -263,5 +263,9 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
 
 ## Changelog
 
+### 1.0.1 - 20 September 2016
+* Switched to CocoaPods deployment
+* Changed Deployment Target to iOS 8.0
+
 ### 1.0.0 - 19 September 2016
 * First release fo the iOS SDK
