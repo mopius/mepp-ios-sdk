@@ -8,49 +8,6 @@ This document shows you a quick way to start using the MEPP SDK in your apps.
 
 To use the MEPP SDK in your project, the minimum deployment target must be iOS 9.0.
 
-### Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
-
-You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
-
-``` bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate MEPP SDK into your Xcode project using Carthage follow these step.
-
-1. On your application targets `General` settings tab, in the `Linked Frameworks and Libraries` section, drag the
-  * `AFDateHelper.framework`
-  * `Alamofire.framework`
-  * `AlamofireObjectMapper.framework`
-  * `GoogleAnalytics.framework`
-  * `KontaktSDK.framework`
-  * `MeppSDK.framework`
-  * `ObjectMapper.framework`
-  * `Reachability.framework`
-
-  from the `Frameworks` folder on disk.
-2. On your application targets `Build Phases` settings tab, click the `+` icon and choose `New Run Script Phase`. Create a Run Script with the following contents:
-
-  ```sh
-  /usr/local/bin/carthage copy-frameworks
-  ```
-
-  and add the paths to the frameworks you want to use under `Input Files`, e.g.:
-
-  ```
-  $(SRCROOT)/Frameworks/AFDateHelper.framework
-  $(SRCROOT)/Frameworks/Alamofire.framework
-  $(SRCROOT)/Frameworks/AlamofireObjectMapper.framework
-  $(SRCROOT)/Frameworks/GoogleAnalytics.framework
-  $(SRCROOT)/Frameworks/KontaktSDK.framework
-  $(SRCROOT)/Frameworks/MeppSDK.framework
-  $(SRCROOT)/Frameworks/ObjectMapper.framework
-  $(SRCROOT)/Frameworks/Reachability.framework
-  ```
-  
 ### CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
