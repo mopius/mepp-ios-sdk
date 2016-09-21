@@ -149,15 +149,23 @@ SWIFT_CLASS("_TtC7MeppSDK23MeppDeviceStatusManager")
 - (void)startBluetoothNotifier;
 @end
 
+@class CLLocationManager;
+
+@interface MeppDeviceStatusManager (SWIFT_EXTENSION(MeppSDK)) <CLLocationManagerDelegate>
+- (void)locationManager:(CLLocationManager * _Nonnull)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status;
+@end
+
 
 @interface MeppDeviceStatusManager (SWIFT_EXTENSION(MeppSDK)) <CBCentralManagerDelegate>
 - (void)centralManagerDidUpdateState:(CBCentralManager * _Nonnull)central;
 @end
 
-@class CLLocationManager;
 
-@interface MeppDeviceStatusManager (SWIFT_EXTENSION(MeppSDK)) <CLLocationManagerDelegate>
-- (void)locationManager:(CLLocationManager * _Nonnull)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status;
+SWIFT_CLASS("_TtC7MeppSDK7MeppSDK")
+@interface MeppSDK : NSObject
++ (void)setAppToken:(NSString * _Nonnull)appToken forHost:(NSString * _Nonnull)apiHost completion:(void (^ _Nullable)(BOOL successful))completion;
++ (void)setupGoogleAnalyticsWithID:(NSString * _Nonnull)id;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
