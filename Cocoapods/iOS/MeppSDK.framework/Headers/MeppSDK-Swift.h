@@ -105,6 +105,8 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 @interface CBCentralManager (SWIFT_EXTENSION(MeppSDK))
 @end
 
+@class MetaInfo;
+@class TextRecord;
 
 SWIFT_CLASS("_TtC7MeppSDK7Content")
 @interface Content : NSObject
@@ -117,6 +119,12 @@ SWIFT_CLASS("_TtC7MeppSDK7Content")
 @property (nonatomic, copy) NSString * _Nullable activeDateStop;
 @property (nonatomic, copy) NSString * _Nullable activeTimeStart;
 @property (nonatomic, copy) NSString * _Nullable activeTimeStop;
+
+/// The meta info of the content.
+@property (nonatomic, strong) MetaInfo * _Nullable metaInfo;
+
+/// The text record of the content.
+@property (nonatomic, strong) TextRecord * _Nullable textRecord;
 
 /// This extra infos as a dictionary (e.g. the legal text).
 @property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull extraInfo;
@@ -133,6 +141,13 @@ SWIFT_CLASS("_TtC7MeppSDK16DiscoveredBeacon")
 @property (nonatomic) NSUInteger batteryLevel;
 @property (nonatomic, strong) NSNumber * _Nonnull rssi;
 - (nonnull instancetype)initFromKontaktBeacon:(KTKNearbyDevice * _Nonnull)beacon OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC7MeppSDK12LanguageCode")
+@interface LanguageCode : NSObject
+@property (nonatomic, copy) NSString * _Nullable code;
+@property (nonatomic, copy) NSString * _Nullable name;
 @end
 
 
@@ -156,16 +171,16 @@ SWIFT_CLASS("_TtC7MeppSDK17MeppBeaconManager")
 - (void)stopMonitoringForRegion:(KTKBeaconRegion * _Nullable)region;
 @end
 
-
-@interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK))
-@end
-
 @class KTKDevicesManager;
 @class NSError;
 
 @interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK)) <KTKDevicesManagerDelegate>
 - (void)devicesManager:(KTKDevicesManager * _Nonnull)manager didDiscoverDevices:(NSArray<KTKNearbyDevice *> * _Nullable)devices;
 - (void)devicesManagerDidFailToStartDiscovery:(KTKDevicesManager * _Nonnull)manager withError:(NSError * _Nullable)error;
+@end
+
+
+@interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK))
 @end
 
 @class KTKBeaconManager;
@@ -218,7 +233,22 @@ SWIFT_CLASS("_TtC7MeppSDK7MeppSDK")
 @end
 
 
+SWIFT_CLASS("_TtC7MeppSDK8MetaInfo")
+@interface MetaInfo : NSObject
+@property (nonatomic, copy) NSString * _Nullable imageURI;
+@property (nonatomic, copy) NSString * _Nullable linkURI;
+@end
+
+
 @interface NSDate (SWIFT_EXTENSION(MeppSDK))
+@end
+
+
+SWIFT_CLASS("_TtC7MeppSDK10TextRecord")
+@interface TextRecord : NSObject
+@property (nonatomic, copy) NSString * _Nullable name;
+@property (nonatomic, copy) NSString * _Nullable text;
+@property (nonatomic, strong) LanguageCode * _Nullable languageCode;
 @end
 
 #pragma clang diagnostic pop
