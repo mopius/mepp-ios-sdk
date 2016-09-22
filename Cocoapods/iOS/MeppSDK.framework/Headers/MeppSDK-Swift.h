@@ -101,9 +101,13 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
+@class NSNumber;
 
 SWIFT_CLASS("_TtC7MeppSDK9AppConfig")
 @interface AppConfig : NSObject
+
+/// The distance when a significant distance change should be initiated.
+@property (nonatomic, strong) NSNumber * _Nullable slcDistance;
 
 /// The minimum allowed SDK version.
 @property (nonatomic, copy) NSString * _Nullable minSDK;
@@ -144,7 +148,6 @@ SWIFT_CLASS("_TtC7MeppSDK7Content")
 @property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull extraInfo;
 @end
 
-@class NSNumber;
 @class KTKNearbyDevice;
 
 SWIFT_CLASS("_TtC7MeppSDK16DiscoveredBeacon")
