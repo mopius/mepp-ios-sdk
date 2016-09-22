@@ -13,7 +13,7 @@
     - [Get Content by ID](#get-content-by-id)
     - [Get Content by Hardware](#get-content-by-hardware)
 - [Reachability](#reachability)
-  - [Start and Stop Reachability Notification](#start-and-stop -reachability-notification)
+  - [Start and Stop Reachability Notification](#start-and-stop-reachability-notification)
   - [Reachability Delegate Callbacks](#reachability-delegate-callbacks)
 - [Data Structure](#data-structure)
   - [AppConfig](#appconfig)
