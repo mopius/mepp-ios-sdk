@@ -173,7 +173,7 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
     }];
 ```
 
-### Delegate Callbacks
+### Beacon Delegate Callbacks
 
 Now we'll add the delegate methods for the beacon manager.
 
@@ -371,7 +371,7 @@ self.deviceStatusManager = [[MeppDeviceStatusManager alloc] init];
 self.deviceStatusManager.delegate = self;
 ```
 
-### Delegate Callbacks
+### Reachability Delegate Callbacks
 
 Now we'll add the delegate methods for the device status manager.
 
