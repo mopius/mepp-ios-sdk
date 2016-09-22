@@ -1,5 +1,27 @@
 # MEPP iOS SDK
 
+- [Overview](#overview)
+- [Installing iOS SDK](#overview)
+    - [CocoaPods](#cocoapods)
+- [First Steps](#first-steps)
+- [Interacting with Beacons - monitoring a region](#interacting-with-beacons)
+  - [Basic Setup](#basic-setup)
+  - [Beacon Delegate Callbacks](#beacon-delegate-callbacks)
+- [Communicating with the MEPP Rest API](#api)
+  - [MeppAPIClient](#mepp-api-client)
+  - [Get Application Configuration](#get-app-config)
+  - [Get Content by ID](#get-config-by-id)
+  - [Get Content by Hardware](#get-config-by-hardware)
+- [Reachability](#reachability)
+  - [Reachability Delegate Callbacks](#reachability-delegate-callbacks)
+- [Data Structure](#data-structure)
+  - [AppConfig](#appconfig)
+  - [Content](#content)
+  - [MetaInfo](#metainfo)
+  - [TextRecord](#textrecord)
+  - [Beacon](#beacon)
+- [Changelog](#changelog)
+
 ## Overview
 
 This document shows you a quick way to start using the MEPP SDK in your apps.
@@ -129,9 +151,9 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
   MeppSDK.setAppToken("A1B2C3D4", forHost: "example.com") { (successful) in
             if successful {
               // init beacon manager
-              meppBeaconManager = MeppBeaconManager()
-              meppBeaconManager!.delegate = self
-              meppBeaconManager!.startMonitoring()
+              self.meppBeaconManager = MeppBeaconManager()
+              self.meppBeaconManager!.delegate = self
+              self.meppBeaconManager!.startMonitoring()
             }
         }
 
@@ -253,7 +275,7 @@ meppAPIClient?.appConfig({ (successful, appConfig) in
 
 **Swift**
 ``` Swift
-meppAPIClient?.contentById(1, user: username, completion: { (successful, content) in
+meppAPIClient?.contentById(1, user: "swift-client", completion: { (successful, content) in
             if successful {
                 print("content name: \(content?.textRecord?.name)")
             }
@@ -275,7 +297,7 @@ meppAPIClient?.contentById(1, user: username, completion: { (successful, content
     }];
 ```
 
-### Get Content by hardware
+### Get Content by Hardware
 
 **Swift**
 ``` Swift
@@ -284,7 +306,7 @@ let beacon = Beacon()
         beacon.major = "1"
         beacon.minor = "2"
 
-        meppAPIClient?.contentByHardware(beacon, user: username, completion: { (successful, entryContent, exitContent) in
+        meppAPIClient?.contentByHardware(beacon, user: "swift-client", completion: { (successful, entryContent, exitContent) in
             if successful {
                 if let entryContent = entryContent {
                     print ("entry content: \(entryContent.textRecord?.name)")
