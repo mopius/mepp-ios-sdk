@@ -13,6 +13,7 @@
     - [Get Content by ID](#get-content-by-id)
     - [Get Content by Hardware](#get-content-by-hardware)
 - [Reachability](#reachability)
+  - [Start and Stop Reachability Notification](#start-and-stop -reachability-notification)
   - [Reachability Delegate Callbacks](#reachability-delegate-callbacks)
 - [Data Structure](#data-structure)
   - [AppConfig](#appconfig)
@@ -376,12 +377,44 @@ We will use `viewDidLoad` to initiate the device status manager.
 ``` Swift
 meppDeviceStatusManager = MeppDeviceStatusManager()
 meppDeviceStatusManager?.delegate = self
+meppDeviceStatusManager?.requestAlwaysLocationAuthorization()
 ```
 
 **Objective-C**
 ``` Objective-C
 self.deviceStatusManager = [[MeppDeviceStatusManager alloc] init];
 self.deviceStatusManager.delegate = self;
+[self.deviceStatusManager requestAlwaysLocationAuthorization];
+```
+
+### Start and Stop Reachability Notification
+
+We will use `viewWillAppear` to start the reachability notification.
+
+**Swift**
+``` Swift
+meppDeviceStatusManager?.startReachabilityNotifier()
+meppDeviceStatusManager?.startLocationNotifier()
+meppDeviceStatusManager?.startBluetoothNotifier()
+```
+
+**Objective-C**
+``` Objective-C
+[self.deviceStatusManager startReachabilityNotifier];
+[self.deviceStatusManager startLocationNotifier];
+[self.deviceStatusManager startBluetoothNotifier];
+```
+
+We will use `viewWillDisappear` to stop the reachability notification.
+
+**Swift**
+``` Swift
+meppDeviceStatusManager?.stopReachabilityNotifier()
+```
+
+**Objective-C**
+``` Objective-C
+[self.deviceStatusManager stopReachabilityNotifier];
 ```
 
 ### Reachability Delegate Callbacks

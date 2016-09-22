@@ -20,12 +20,27 @@ class ViewController: UIViewController {
         // MEPP Reachability
         meppDeviceStatusManager = MeppDeviceStatusManager()
         meppDeviceStatusManager?.delegate = self
+        meppDeviceStatusManager?.requestAlwaysLocationAuthorization()
         
         // MEPP API Client
         meppAPIClient = MeppAPIClient()
         getAppConfig()
         fetchContentById(1)
         fetchContentByHardware("D33255DF-8AFD-4A52-99A2-C7DD8E42583F", major: "1", minor: "2")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        meppDeviceStatusManager?.startReachabilityNotifier()
+        meppDeviceStatusManager?.startLocationNotifier()
+        meppDeviceStatusManager?.startBluetoothNotifier()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        meppDeviceStatusManager?.stopReachabilityNotifier()
     }
     
     private func getAppConfig() {

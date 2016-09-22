@@ -27,12 +27,27 @@
     // MEPP Reachability
     self.deviceStatusManager = [[MeppDeviceStatusManager alloc] init];
     self.deviceStatusManager.delegate = self;
+    [self.deviceStatusManager requestAlwaysLocationAuthorization];
     
     // MEPP API Client
     self.apiClient = [[MeppAPIClient alloc] init];
     [self getAppConfig];
     [self fetchContentById:1];
     [self fetchContentByHardwareWithUUID:@"D33255DF-8AFD-4A52-99A2-C7DD8E42583F" andMajor:@"1" andMinor:@"2"];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.deviceStatusManager startReachabilityNotifier];
+    [self.deviceStatusManager startLocationNotifier];
+    [self.deviceStatusManager startBluetoothNotifier];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.deviceStatusManager stopReachabilityNotifier];
 }
 
 - (void)getAppConfig {
