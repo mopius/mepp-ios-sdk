@@ -136,6 +136,13 @@ SWIFT_CLASS("_TtC7MeppSDK6Beacon")
 - (nonnull instancetype)initWithUUID:(NSString * _Nonnull)uuid major:(NSString * _Nonnull)major minor:(NSString * _Nonnull)minor OBJC_DESIGNATED_INITIALIZER;
 @end
 
+typedef SWIFT_ENUM(NSInteger, BluetoothStatus) {
+  BluetoothStatusOn = 0,
+  BluetoothStatusOff = 1,
+  BluetoothStatusError = 2,
+  BluetoothStatusUnknown = 3,
+};
+
 
 @interface CBCentralManager (SWIFT_EXTENSION(MeppSDK))
 @end
@@ -192,6 +199,13 @@ SWIFT_CLASS("_TtC7MeppSDK12LanguageCode")
 @property (nonatomic, copy) NSString * _Nullable code;
 @property (nonatomic, copy) NSString * _Nullable name;
 @end
+
+typedef SWIFT_ENUM(NSInteger, LocationStatus) {
+  LocationStatusAlwaysAllowed = 0,
+  LocationStatusWhenInUseAllowed = 1,
+  LocationStatusNotAllowed = 2,
+  LocationStatusUnknown = 3,
+};
 
 
 SWIFT_CLASS("_TtC7MeppSDK13MeppAPIClient")
@@ -250,9 +264,11 @@ SWIFT_PROTOCOL("_TtP7MeppSDK25MeppBeaconManagerDelegate_")
 - (void)didDiscoverBeacons:(NSArray<DiscoveredBeacon *> * _Nonnull)beacons;
 @end
 
+@protocol MeppDeviceStatusManagerDelegate;
 
 SWIFT_CLASS("_TtC7MeppSDK23MeppDeviceStatusManager")
 @interface MeppDeviceStatusManager : NSObject
+@property (nonatomic, strong) id <MeppDeviceStatusManagerDelegate> _Nullable delegate;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (void)startReachabilityNotifier;
 - (void)stopReachabilityNotifier;
@@ -270,6 +286,15 @@ SWIFT_CLASS("_TtC7MeppSDK23MeppDeviceStatusManager")
 
 @interface MeppDeviceStatusManager (SWIFT_EXTENSION(MeppSDK)) <CBCentralManagerDelegate>
 - (void)centralManagerDidUpdateState:(CBCentralManager * _Nonnull)central;
+@end
+
+enum ReachableStatus : NSInteger;
+
+SWIFT_PROTOCOL("_TtP7MeppSDK31MeppDeviceStatusManagerDelegate_")
+@protocol MeppDeviceStatusManagerDelegate
+- (void)didChangeReachability:(enum ReachableStatus)reachabilityStatus;
+- (void)didChangeLocationAuthorization:(enum LocationStatus)status;
+- (void)didChangeBluetoothStatus:(enum BluetoothStatus)status;
 @end
 
 
@@ -290,6 +315,12 @@ SWIFT_CLASS("_TtC7MeppSDK8MetaInfo")
 
 @interface NSDate (SWIFT_EXTENSION(MeppSDK))
 @end
+
+typedef SWIFT_ENUM(NSInteger, ReachableStatus) {
+  ReachableStatusReachable = 0,
+  ReachableStatusUnReachable = 1,
+  ReachableStatusUnknown = 2,
+};
 
 
 SWIFT_CLASS("_TtC7MeppSDK10TextRecord")

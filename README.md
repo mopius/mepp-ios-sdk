@@ -41,7 +41,7 @@ For your app to work correctly you have to add a new key to your project's plist
 
 ``` XML
 <key>NSLocationAlwaysUsageDescription</key>
-<string>Required for ios >= 8 compatibilty</string>
+<string>Required for iOS >= 8 compatibilty</string>
 ```
 
 The string can be empty, the content is not important.
@@ -297,13 +297,41 @@ let beacon = Beacon()
         })
 ```
 
+**Objective-C**
+``` Objective-C
+Beacon *beacon = [[Beacon alloc] init];
+    beacon.uuid = @"D33255DF-8AFD-4A52-99A2-C7DD8E42583F";
+    beacon.major = @"1";
+    beacon.minor = @"2";
+
+    [self.apiClient contentByHardware:beacon user:@"objc-client" completion:^(BOOL successful, Content * _Nullable entryContent, Content * _Nullable exitContent) {
+        if (successful) {
+            if (entryContent.textRecord != nil) {
+                TextRecord *textRecord = entryContent.textRecord;
+
+                if (textRecord.name != nil) {
+                    NSLog(@"entry content name: %@", textRecord.name);
+                }
+            }
+        }
+    }];
+```
+
 ## Reachability
 
 The MEPP SDK also provides a class to get informations about the current Device status. You can monitor the network and API reachability. You can also monitor the bluetooth connection status of the device.
 
 You can initialize it by calling...
 
+**Swift**
+``` Swift
 MeppDeviceStatusManager()
+```
+
+**Objective-C**
+``` Objective-C
+[[MeppDeviceStatusManager alloc] init];
+```
 
 Also make sure that your class conforms to `MeppDeviceStatusManagerDelegate` protocol.
 
