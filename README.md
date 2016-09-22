@@ -9,7 +9,7 @@
   - [Beacon Delegate Callbacks](#beacon-delegate-callbacks)
 - [Communicating with the MEPP Rest API](#communicating-with-the-mepp-rest-api)
   - [MeppAPIClient](#meppapiclient)
-    - [Get Application Configuration](#get-application-config)
+    - [Get Application Configuration](#get-application-configuration)
     - [Get Content by ID](#get-content-by-id)
     - [Get Content by Hardware](#get-content-by-hardware)
 - [Reachability](#reachability)
