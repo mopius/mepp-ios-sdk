@@ -11,6 +11,7 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target   = '8.0'
 
   spec.ios.frameworks          = 'UIKit', 'Foundation', 'SystemConfiguration', 'MobileCoreServices', 'CoreLocation', 'CoreBluetooth'
+
   spec.source = { :path => '.' }
 
   spec.ios.vendored_frameworks = 'Cocoapods/iOS/MeppSDK.framework'

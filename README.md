@@ -30,6 +30,10 @@ This document shows you a quick way to start using the MEPP SDK in your apps.
 
 To use the MEPP SDK in your project, the minimum deployment target must be iOS 8.0.
 
+If your try to use this framework with an existing Swift project, make sure that you existing project uses Swift 2.3 (Legacy Swift). Swift >= 3.0 is currently not supported.
+
+You have to set **Use Legacy Swift Language Version** in your existing or new Project.
+
 ### CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
