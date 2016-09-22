@@ -237,15 +237,42 @@ meppAPIClient?.appConfig({ (successful, appConfig) in
         })
 ```
 
+**Objective-C**
+``` Objective-C
+[apiClient appConfig:^(BOOL successful, AppConfig * _Nullable appConfig) {
+        if (successful) {
+            if (appConfig != nil) {
+                NSLog(@"app config min sdk version: %@", appConfig.minSDK);
+                NSLog(@"app config maximum session time: %@", appConfig.slcDistance);
+            }
+        }
+    }];
+```
+
 #### Get Content by ID
 
 **Swift**
 ``` Swift
-meppAPIClient?.contentById(1, user: username, completion: { (succesful, content) in
-            if succesful {
+meppAPIClient?.contentById(1, user: username, completion: { (successful, content) in
+            if successful {
                 print("content name: \(content?.textRecord?.name)")
             }
         })
+```
+
+**Objective-C**
+``` Objective-C
+[apiClient contentById:1 user:@"objc-client" completion:^(BOOL successful, Content * _Nullable content) {
+        if (successful) {
+            if (content.textRecord != nil) {
+                TextRecord *textRecord = content.textRecord;
+
+                if (textRecord.name != nil) {
+                    NSLog(@"content name: %@", textRecord.name);
+                }
+            }
+        }
+    }];
 ```
 
 ### Get Content by hardware
@@ -310,17 +337,17 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
 ## Data Structure
 
 ### AppConfig
- * **slcDistance: Int?** The distance when a significant distance change should be initiated.
+ * **slcDistance: NSNumber?** The distance when a significant distance change should be initiated.
  * **minSDK: String?** The minimum allowed SDK version.
- * **maxSessionTime: Int?** The maximum session time.
+ * **maxSessionTime: NSNumber?** The maximum session time.
 
 ### Content
- * **id: Int?** The internal content ID. Use this to fetch content a by id.
+ * **id: NSNumber?** The internal content ID. Use this to fetch content a by id.
  * **active: Bool?** Boolean if the content is active or not.
  * **contentType: String?** The type of the content (a.k.a use case).
  * **displayType: DisplayType?** The display type of the content. ["entry", "exit"]
- * **delayTime: Int?** The delay after the content should be shown in seconds.
- * **coolDownTime: Int?** The cooldown time in seconds after which the SDK notifies for a content again.
+ * **delayTime: NSNumber?** The delay after the content should be shown in seconds.
+ * **coolDownTime: NSNumber?** The cooldown time in seconds after which the SDK notifies for a content again.
  * **activeDateStart: String?** This indicates the date from which a content is active.
  * **activeDateStop: String?** This indicates the date until a content is active.
  * **activeTimeStart: String?** This delivers the time of the day from which a content is active.

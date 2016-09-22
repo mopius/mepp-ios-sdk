@@ -112,11 +112,28 @@ SWIFT_CLASS("_TtC7MeppSDK9AppConfig")
 /// The minimum allowed SDK version.
 @property (nonatomic, copy) NSString * _Nullable minSDK;
 
+/// The maximum session time.
+@property (nonatomic, strong) NSNumber * _Nullable maxSessionTime;
+
 /// The default iBeacon UUID.
 @property (nonatomic, copy) NSString * _Nullable defaultBeaconUUID;
 
 /// The kontakt.io API key.
 @property (nonatomic, copy) NSString * _Nullable kontaktIoAPIKey;
+@end
+
+@class CLBeacon;
+
+SWIFT_CLASS("_TtC7MeppSDK6Beacon")
+@interface Beacon : NSObject
+
+/// The UUID of the beacon.
+@property (nonatomic, copy) NSString * _Nullable uuid;
+@property (nonatomic, copy) NSString * _Nullable major;
+@property (nonatomic, copy) NSString * _Nullable minor;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithClbeacon:(CLBeacon * _Nonnull)clbeacon OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithUUID:(NSString * _Nonnull)uuid major:(NSString * _Nonnull)major minor:(NSString * _Nonnull)minor OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -129,8 +146,17 @@ SWIFT_CLASS("_TtC7MeppSDK9AppConfig")
 SWIFT_CLASS("_TtC7MeppSDK7Content")
 @interface Content : NSObject
 
+/// The internal content ID. Use this to fetch content a by id.
+@property (nonatomic, strong) NSNumber * _Nullable id;
+
 /// The type of the content.
 @property (nonatomic, copy) NSString * _Nullable contentType;
+
+/// The delay after the content should be shown in seconds.
+@property (nonatomic, strong) NSNumber * _Nullable delayTime;
+
+/// The cooldown time in seconds after which the SDK notifies for a content again.
+@property (nonatomic, strong) NSNumber * _Nullable coolDownTime;
 
 /// This indicates the date from which a content is active.
 @property (nonatomic, copy) NSString * _Nullable activeDateStart;
@@ -177,7 +203,10 @@ SWIFT_CLASS("_TtC7MeppSDK13MeppAPIClient")
 - (void)appConfig:(void (^ _Nonnull)(BOOL successful, AppConfig * _Nullable appConfig))completion;
 
 /// Get content by id.
-- (void)contentById:(NSInteger)id user:(NSString * _Nonnull)user completion:(void (^ _Nonnull)(BOOL succesful, Content * _Nullable content))completion;
+- (void)contentById:(NSInteger)id user:(NSString * _Nonnull)user completion:(void (^ _Nonnull)(BOOL successful, Content * _Nullable content))completion;
+
+/// Get content by hardware.
+- (void)contentByHardware:(Beacon * _Nonnull)beacon user:(NSString * _Nonnull)user completion:(void (^ _Nonnull)(BOOL successful, Content * _Nullable entryContent, Content * _Nullable exitContent))completion;
 @end
 
 @protocol MeppBeaconManagerDelegate;
@@ -204,7 +233,6 @@ SWIFT_CLASS("_TtC7MeppSDK17MeppBeaconManager")
 @end
 
 @class KTKBeaconManager;
-@class CLBeacon;
 
 @interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK)) <KTKBeaconManagerDelegate>
 - (void)beaconManager:(KTKBeaconManager * _Nonnull)manager didChangeLocationAuthorizationStatus:(CLAuthorizationStatus)status;
