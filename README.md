@@ -490,6 +490,7 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
 
 ### 1.0.2 - 22 September 2016
 * Added Objective-C support
+* Added Examples for iOS (Swift and Objective-C)
 
 ### 1.0.1 - 20 September 2016
 * Switched to CocoaPods deployment
