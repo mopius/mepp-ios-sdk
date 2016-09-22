@@ -343,6 +343,12 @@ meppDeviceStatusManager = MeppDeviceStatusManager()
 meppDeviceStatusManager?.delegate = self
 ```
 
+**Objective-C**
+``` Objective-C
+self.deviceStatusManager = [[MeppDeviceStatusManager alloc] init];
+self.deviceStatusManager.delegate = self;
+```
+
 ### Delegate Callbacks
 
 Now we'll add the delegate methods for the device status manager.
@@ -359,6 +365,21 @@ func didChangeLocationAuthorization(status: LocationStatus) {
 
 func didChangeBluetoothStatus(status: BluetoothStatus) {
   print("bluetooth status changed")
+}
+```
+
+**Objective-C**
+``` Objective-C
+- (void)didChangeReachability:(enum ReachableStatus)reachabilityStatus {
+    NSLog(@"network reachability status changed");
+}
+
+- (void)didChangeLocationAuthorization:(enum LocationStatus)status {
+    NSLog(@"location authorization status changed");
+}
+
+- (void)didChangeBluetoothStatus:(enum BluetoothStatus)status {
+    NSLog(@"bluetooth status changed");
 }
 ```
 
