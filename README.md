@@ -1,13 +1,13 @@
 # MEPP iOS SDK
 
 - [Overview](#overview)
-- [Installing iOS SDK](#overview)
+- [Installing iOS SDK](#installing-ios-sdk)
     - [CocoaPods](#cocoapods)
 - [First Steps](#first-steps)
-- [Interacting with Beacons - monitoring a region](#interacting-with-beacons)
+- [Interacting with Beacons](#interacting-with-beacons)
   - [Basic Setup](#basic-setup)
   - [Beacon Delegate Callbacks](#beacon-delegate-callbacks)
-- [Communicating with the MEPP Rest API](#api)
+- [Communicating with the MEPP Rest API](#communicating-with-the-mepp-rest-api)
   - [MeppAPIClient](#mepp-api-client)
   - [Get Application Configuration](#get-app-config)
   - [Get Content by ID](#get-config-by-id)
@@ -104,7 +104,7 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 }
 ```
 
-## Interacting with Beacons - monitoring a region
+## Interacting with Beacons
 In the following example we'll show you how to create a simple application to monitor beacons and get back content informations using the MEPP SDK.
 
 ### Basic Setup
@@ -241,7 +241,7 @@ MeppAPIClient *apiClient = [[MeppAPIClient alloc] init];
 
 if you had set the SDK properties before via `MeppSDK()`.
 
-### Using MeppAPIClient
+### MeppAPIClient
 
 After initialization, the MeppAPIClient object acts as a facade between your app and the MEPP services. You can use it to get contents by id or hardware infos, application configurations and much more.
 
