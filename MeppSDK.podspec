@@ -12,11 +12,6 @@ Pod::Spec.new do |spec|
 
   spec.ios.frameworks          = 'UIKit', 'Foundation', 'SystemConfiguration', 'MobileCoreServices', 'CoreLocation', 'CoreBluetooth'
 
-  spec.source = {
-    :http    => "https://mopius.com/mepp/mepp-ios-sdk-#{spec.version.to_s}.zip",
-    :flatten => true
-  }
-
   spec.ios.vendored_frameworks = 'Cocoapods/iOS/MeppSDK.framework'
 
   spec.requires_arc  = true
