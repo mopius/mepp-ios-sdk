@@ -45,6 +45,15 @@ platform :ios, '8.0'
 use_frameworks!
 
 pod 'MeppSDK', :git => 'https://github.com/mopius/mepp-ios-sdk.git'
+
+post_install do |installer_representation|
+  # Specify Swift 2.3 Setting!
+  installer_representation.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = '2.3'
+    end
+  end
+end
 ```
 
 Then, run the following command:
