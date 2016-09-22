@@ -39,7 +39,7 @@ For your app to work correctly you have to add a new key to your project's plist
 2.  Select your projects **Info.plist** file
 3.  Add the following key string pair to the file.
 
-``` Swift
+``` XML
 <key>NSLocationAlwaysUsageDescription</key>
 <string>Required for ios >= 8 compatibilty</string>
 ```
@@ -48,18 +48,37 @@ The string can be empty, the content is not important.
 
 Set the MEPP default properties.
 
+**Swift**
 ``` Swift
 import MeppSDK
 ```
 
+**Objective-C**
+``` Objective-C
+@import MeppSDK;
+```
+
+**Swift**
 ``` Swift
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
   // Set API and Google Analytics Settings
-  MeppSDK.setAppToken("A1B2C3D4", forHost: "example.com")
-  MeppSDK.setupGoogleAnalytics(withID: "UAxxxxxx")
+  MeppSDK.setAppToken("A1B2C3D4", forHost: "example.com") { (successful) in
+            // to something after MeppSDK is initialized
+        }
 
 	return true
+}
+```
+
+**Objective-C**
+``` Objective-C
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [MeppSDK setAppToken:@"A1B2C3D4" forHost:@"example.com" completion:^(BOOL successful) {
+        // to something after MeppSDK is initialized
+    }];
+
+    return YES;
 }
 ```
 
@@ -71,15 +90,27 @@ In our example, we have used the **AppDelegate.swift** for simplicity. You would
 
 First we'll import the MEPP SDK.
 
+**Swift**
 ``` Swift
 import MeppSDK
+```
+
+**Objective-C**
+``` Objective-C
+@import MeppSDK;
 ```
 
 We'll add the MeppBeaconManager object as a property.
 MeppBeaconManager informs its delegates when a new content is available.
 
+**Swift**
 ``` Swift
 private var meppBeaconManager: MeppBeaconManager?
+```
+
+**Objective-C**
+``` Objective-C
+@property (readwrite, nonatomic, strong) MeppBeaconManager *beaconManager;
 ```
 
 ---
@@ -90,26 +121,41 @@ Make sure `AppDelegate` conforms to `MeppBeaconManagerDelegate` protocol.
 
 We will use `application:didFinishLaunchingWithOptions:` to initiate the beacon manager and start the monitoring.
 
+**Swift**
 ``` Swift
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-  // Set API and Google Analytics Settings
-  MeppSDK.setAppToken("A1B2C3D4", forHost: "example.com")
-  MeppSDK.setupGoogleAnalytics(withID: "UAxxxxxx")
-
-  // Setup MeppBeaconManager
-  meppBeaconManager = MeppBeaconManager()
-  meppBeaconManager!.delegate = self
-  meppBeaconManager!.startMonitoring()
+  // Set MeppSDK
+  MeppSDK.setAppToken("A1B2C3D4", forHost: "example.com") { (successful) in
+            if successful {
+              // init beacon manager
+              meppBeaconManager = MeppBeaconManager()
+              meppBeaconManager!.delegate = self
+              meppBeaconManager!.startMonitoring()
+            }
+        }
 
 	return true
 }
+```
+
+**Objective-C**
+``` Objective-C
+[MeppSDK setAppToken:@"A1B2C3D4" forHost:@"example.com" completion:^(BOOL successful) {
+        if (successful) {
+            // init beacon manager
+            self.beaconManager = [[MeppBeaconManager alloc] init];
+            self.beaconManager.delegate = self;
+            [self.beaconManager startMonitoring];
+        }
+    }];
 ```
 
 ### Delegate Callbacks
 
 Now we'll add the delegate methods for the beacon manager.
 
+**Swift**
 ``` Swift
 extension AppDelegate: MeppBeaconManagerDelegate {
   func didFindNewContent(content: Content) {
@@ -126,6 +172,21 @@ extension AppDelegate: MeppBeaconManagerDelegate {
 }
 ```
 
+**Objective-C**
+``` Objective-C
+- (void)didFindNewContent:(Content *)content {
+    // new content
+}
+
+- (void)didChangeSessionStatus:(NSString *)status critical:(BOOL)critical {
+    // get some session infos, for debugging purposes.
+}
+
+- (void)didDiscoverBeacons:(NSArray<DiscoveredBeacon *> *)beacons {
+    // get discovered beacons
+}
+```
+
 ## Communicating with the MEPP Rest API
 
 The MEPP Rest API provides some resources to query/update our cloud platform.
@@ -134,13 +195,28 @@ The class responsible for communication with the API is MeppAPIClient.
 
 You can initialize it by calling...
 
+**Swift**
 ``` Swift
 MeppAPIClient(appToken: "A1B1C3", apiHost: "example.com")
 ```
+
+**Objective-C**
+``` Objective-C
+MeppAPIClient *apiClient = [[MeppAPIClient alloc] initWithAppToken:@"A1B1C3" apiHost:@"example.com"];
+```
+
 or
+
+**Swift**
 ``` Swift
 MeppAPIClient()
 ```
+
+**Objective-C**
+``` Objective-C
+MeppAPIClient *apiClient = [[MeppAPIClient alloc] init];
+```
+
 if you had set the SDK properties before via `MeppSDK()`.
 
 ### Using MeppAPIClient
@@ -149,6 +225,7 @@ After initialization, the MeppAPIClient object acts as a facade between your app
 
 #### Get Application Configuration
 
+**Swift**
 ``` Swift
 meppAPIClient?.appConfig({ (successful, appConfig) in
             if successful {
@@ -162,6 +239,7 @@ meppAPIClient?.appConfig({ (successful, appConfig) in
 
 #### Get Content by ID
 
+**Swift**
 ``` Swift
 meppAPIClient?.contentById(1, user: username, completion: { (succesful, content) in
             if succesful {
@@ -172,6 +250,7 @@ meppAPIClient?.contentById(1, user: username, completion: { (succesful, content)
 
 ### Get Content by hardware
 
+**Swift**
 ``` Swift
 let beacon = Beacon()
         beacon.uuid = "D33255DF-8AFD-4A52-99A2-C7DD8E42583F"
@@ -203,6 +282,7 @@ Also make sure that your class conforms to `MeppDeviceStatusManagerDelegate` pro
 
 We will use `viewDidLoad` to initiate the device status manager.
 
+**Swift**
 ``` Swift
 meppDeviceStatusManager = MeppDeviceStatusManager()
 meppDeviceStatusManager?.delegate = self
@@ -212,6 +292,7 @@ meppDeviceStatusManager?.delegate = self
 
 Now we'll add the delegate methods for the device status manager.
 
+**Swift**
 ``` Swift
 func didChangeReachability(reachabilityStatus: ReachableStatus) {
     print("network reachability status changed")
@@ -248,8 +329,8 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
  * **textRecord: TextRecord?** The text record of the content.
 
 ### MetaInfo
- * **imageURI: String?** The image uri of the meta info.
- * **linkURI: String?** The link uri of the meta info.
+ * **imageURI: String?** The image URI of the meta info.
+ * **linkURI: String?** The link URI of the meta info.
 
 ### TextRecord
  * **name: String?** The name of the text record.
@@ -262,6 +343,9 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
  * **minor: String?** The minor ID of the beacon.
 
 ## Changelog
+
+### 1.0.2 - 22 September 2016
+* Added Objective-C support
 
 ### 1.0.1 - 20 September 2016
 * Switched to CocoaPods deployment

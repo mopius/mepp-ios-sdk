@@ -92,8 +92,8 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 # endif
 #endif
 #if defined(__has_feature) && __has_feature(modules)
-@import CoreBluetooth;
 @import ObjectiveC;
+@import CoreBluetooth;
 @import KontaktSDK;
 @import CoreLocation;
 @import Foundation;
@@ -101,6 +101,20 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
+
+SWIFT_CLASS("_TtC7MeppSDK9AppConfig")
+@interface AppConfig : NSObject
+
+/// The minimum allowed SDK version.
+@property (nonatomic, copy) NSString * _Nullable minSDK;
+
+/// The default iBeacon UUID.
+@property (nonatomic, copy) NSString * _Nullable defaultBeaconUUID;
+
+/// The kontakt.io API key.
+@property (nonatomic, copy) NSString * _Nullable kontaktIoAPIKey;
+@end
+
 
 @interface CBCentralManager (SWIFT_EXTENSION(MeppSDK))
 @end
@@ -156,6 +170,9 @@ SWIFT_CLASS("_TtC7MeppSDK13MeppAPIClient")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithAppToken:(NSString * _Nonnull)appToken apiHost:(NSString * _Nonnull)apiHost OBJC_DESIGNATED_INITIALIZER;
 
+/// Get all app tokens for the user.
+- (void)appConfig:(void (^ _Nonnull)(BOOL successful, AppConfig * _Nullable appConfig))completion;
+
 /// Get content by id.
 - (void)contentById:(NSInteger)id user:(NSString * _Nonnull)user completion:(void (^ _Nonnull)(BOOL succesful, Content * _Nullable content))completion;
 @end
@@ -171,16 +188,16 @@ SWIFT_CLASS("_TtC7MeppSDK17MeppBeaconManager")
 - (void)stopMonitoringForRegion:(KTKBeaconRegion * _Nullable)region;
 @end
 
+
+@interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK))
+@end
+
 @class KTKDevicesManager;
 @class NSError;
 
 @interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK)) <KTKDevicesManagerDelegate>
 - (void)devicesManager:(KTKDevicesManager * _Nonnull)manager didDiscoverDevices:(NSArray<KTKNearbyDevice *> * _Nullable)devices;
 - (void)devicesManagerDidFailToStartDiscovery:(KTKDevicesManager * _Nonnull)manager withError:(NSError * _Nullable)error;
-@end
-
-
-@interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK))
 @end
 
 @class KTKBeaconManager;
