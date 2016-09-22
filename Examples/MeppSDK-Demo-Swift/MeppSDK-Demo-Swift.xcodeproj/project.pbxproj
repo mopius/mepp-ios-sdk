@@ -1,0 +1,387 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3C02D336AEBA0DC81DD7E851 /* Pods_MeppSDK_Demo_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32818218EDF46BE20BC7FD89 /* Pods_MeppSDK_Demo_Swift.framework */; };
+		CD1A0B881D93DE3300105EBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A0B871D93DE3300105EBA /* AppDelegate.swift */; };
+		CD1A0B8A1D93DE3300105EBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A0B891D93DE3300105EBA /* ViewController.swift */; };
+		CD1A0B8D1D93DE3300105EBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD1A0B8B1D93DE3300105EBA /* Main.storyboard */; };
+		CD1A0B8F1D93DE3300105EBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD1A0B8E1D93DE3300105EBA /* Assets.xcassets */; };
+		CD1A0B921D93DE3300105EBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD1A0B901D93DE3300105EBA /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		32818218EDF46BE20BC7FD89 /* Pods_MeppSDK_Demo_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeppSDK_Demo_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FF21D8F47A69679A20FA823 /* Pods-MeppSDK-Demo-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeppSDK-Demo-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeppSDK-Demo-Swift/Pods-MeppSDK-Demo-Swift.debug.xcconfig"; sourceTree = "<group>"; };
+		A3BA871C101CA203DD30CF4E /* Pods-MeppSDK-Demo-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeppSDK-Demo-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeppSDK-Demo-Swift/Pods-MeppSDK-Demo-Swift.release.xcconfig"; sourceTree = "<group>"; };
+		CD1A0B841D93DE3300105EBA /* MeppSDK-Demo-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MeppSDK-Demo-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD1A0B871D93DE3300105EBA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CD1A0B891D93DE3300105EBA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CD1A0B8C1D93DE3300105EBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CD1A0B8E1D93DE3300105EBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CD1A0B911D93DE3300105EBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CD1A0B931D93DE3300105EBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CD1A0B811D93DE3300105EBA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C02D336AEBA0DC81DD7E851 /* Pods_MeppSDK_Demo_Swift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E6FFB5484F15DA221B312E0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32818218EDF46BE20BC7FD89 /* Pods_MeppSDK_Demo_Swift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9B35CB2D4C6E02FAFA3655D9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4FF21D8F47A69679A20FA823 /* Pods-MeppSDK-Demo-Swift.debug.xcconfig */,
+				A3BA871C101CA203DD30CF4E /* Pods-MeppSDK-Demo-Swift.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CD1A0B7B1D93DE3300105EBA = {
+			isa = PBXGroup;
+			children = (
+				CD1A0B861D93DE3300105EBA /* MeppSDK-Demo-Swift */,
+				CD1A0B851D93DE3300105EBA /* Products */,
+				9B35CB2D4C6E02FAFA3655D9 /* Pods */,
+				3E6FFB5484F15DA221B312E0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CD1A0B851D93DE3300105EBA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CD1A0B841D93DE3300105EBA /* MeppSDK-Demo-Swift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CD1A0B861D93DE3300105EBA /* MeppSDK-Demo-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				CD1A0B871D93DE3300105EBA /* AppDelegate.swift */,
+				CD1A0B891D93DE3300105EBA /* ViewController.swift */,
+				CD1A0B8B1D93DE3300105EBA /* Main.storyboard */,
+				CD1A0B8E1D93DE3300105EBA /* Assets.xcassets */,
+				CD1A0B901D93DE3300105EBA /* LaunchScreen.storyboard */,
+				CD1A0B931D93DE3300105EBA /* Info.plist */,
+			);
+			path = "MeppSDK-Demo-Swift";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CD1A0B831D93DE3300105EBA /* MeppSDK-Demo-Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD1A0B961D93DE3300105EBA /* Build configuration list for PBXNativeTarget "MeppSDK-Demo-Swift" */;
+			buildPhases = (
+				606B4E8C0EBC2AB24DAF9C42 /* [CP] Check Pods Manifest.lock */,
+				CD1A0B801D93DE3300105EBA /* Sources */,
+				CD1A0B811D93DE3300105EBA /* Frameworks */,
+				CD1A0B821D93DE3300105EBA /* Resources */,
+				A3F4EA4F2B3A1F98F40E4F0B /* [CP] Embed Pods Frameworks */,
+				9ACD85CF79D2D4CB5035635A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MeppSDK-Demo-Swift";
+			productName = "MeppSDK-Demo-Swift";
+			productReference = CD1A0B841D93DE3300105EBA /* MeppSDK-Demo-Swift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CD1A0B7C1D93DE3300105EBA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = Mopius;
+				TargetAttributes = {
+					CD1A0B831D93DE3300105EBA = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 6X47Q5RERE;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = CD1A0B7F1D93DE3300105EBA /* Build configuration list for PBXProject "MeppSDK-Demo-Swift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CD1A0B7B1D93DE3300105EBA;
+			productRefGroup = CD1A0B851D93DE3300105EBA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CD1A0B831D93DE3300105EBA /* MeppSDK-Demo-Swift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CD1A0B821D93DE3300105EBA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD1A0B921D93DE3300105EBA /* LaunchScreen.storyboard in Resources */,
+				CD1A0B8F1D93DE3300105EBA /* Assets.xcassets in Resources */,
+				CD1A0B8D1D93DE3300105EBA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		606B4E8C0EBC2AB24DAF9C42 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9ACD85CF79D2D4CB5035635A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeppSDK-Demo-Swift/Pods-MeppSDK-Demo-Swift-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3F4EA4F2B3A1F98F40E4F0B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeppSDK-Demo-Swift/Pods-MeppSDK-Demo-Swift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CD1A0B801D93DE3300105EBA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD1A0B8A1D93DE3300105EBA /* ViewController.swift in Sources */,
+				CD1A0B881D93DE3300105EBA /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CD1A0B8B1D93DE3300105EBA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD1A0B8C1D93DE3300105EBA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CD1A0B901D93DE3300105EBA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD1A0B911D93DE3300105EBA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CD1A0B941D93DE3300105EBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CD1A0B951D93DE3300105EBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CD1A0B971D93DE3300105EBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FF21D8F47A69679A20FA823 /* Pods-MeppSDK-Demo-Swift.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6X47Q5RERE;
+				INFOPLIST_FILE = "MeppSDK-Demo-Swift/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "at.mepp.MeppSDK-Demo-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
+			};
+			name = Debug;
+		};
+		CD1A0B981D93DE3300105EBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3BA871C101CA203DD30CF4E /* Pods-MeppSDK-Demo-Swift.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6X47Q5RERE;
+				INFOPLIST_FILE = "MeppSDK-Demo-Swift/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "at.mepp.MeppSDK-Demo-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CD1A0B7F1D93DE3300105EBA /* Build configuration list for PBXProject "MeppSDK-Demo-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD1A0B941D93DE3300105EBA /* Debug */,
+				CD1A0B951D93DE3300105EBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD1A0B961D93DE3300105EBA /* Build configuration list for PBXNativeTarget "MeppSDK-Demo-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD1A0B971D93DE3300105EBA /* Debug */,
+				CD1A0B981D93DE3300105EBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CD1A0B7C1D93DE3300105EBA /* Project object */;
+}
