@@ -232,6 +232,7 @@ SWIFT_CLASS("_TtC7MeppSDK17MeppBeaconManager")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (void)startMonitoring;
 - (void)stopMonitoringForRegion:(KTKBeaconRegion * _Nullable)region;
+- (void)stopDiscovery;
 @end
 
 
