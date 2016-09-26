@@ -496,6 +496,9 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
 
 ## Changelog
 
+### 1.0.3 - 26 September 2016
+* Added analytics support
+
 ### 1.0.2 - 23 September 2016
 * Added Objective-C support
 * Added Examples for iOS (Swift and Objective-C)
