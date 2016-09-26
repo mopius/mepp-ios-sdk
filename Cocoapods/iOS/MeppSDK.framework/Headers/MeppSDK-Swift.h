@@ -101,6 +101,15 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
+
+SWIFT_CLASS("_TtC7MeppSDK14AnalyticsEvent")
+@interface AnalyticsEvent : NSObject
+@property (nonatomic, copy) NSString * _Nonnull category;
+@property (nonatomic, copy) NSString * _Nonnull action;
+@property (nonatomic, copy) NSString * _Nullable label;
+@property (nonatomic, copy) NSString * _Nullable value;
+@end
+
 @class NSNumber;
 
 SWIFT_CLASS("_TtC7MeppSDK9AppConfig")
@@ -235,16 +244,16 @@ SWIFT_CLASS("_TtC7MeppSDK17MeppBeaconManager")
 - (void)stopDiscovery;
 @end
 
-
-@interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK))
-@end
-
 @class KTKDevicesManager;
 @class NSError;
 
 @interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK)) <KTKDevicesManagerDelegate>
 - (void)devicesManager:(KTKDevicesManager * _Nonnull)manager didDiscoverDevices:(NSArray<KTKNearbyDevice *> * _Nullable)devices;
 - (void)devicesManagerDidFailToStartDiscovery:(KTKDevicesManager * _Nonnull)manager withError:(NSError * _Nullable)error;
+@end
+
+
+@interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK))
 @end
 
 @class KTKBeaconManager;
@@ -263,6 +272,7 @@ SWIFT_PROTOCOL("_TtP7MeppSDK25MeppBeaconManagerDelegate_")
 - (void)didFindNewContent:(Content * _Nonnull)content;
 - (void)didChangeSessionStatus:(NSString * _Nonnull)status critical:(BOOL)critical;
 - (void)didDiscoverBeacons:(NSArray<DiscoveredBeacon *> * _Nonnull)beacons;
+- (void)shouldTrackAnalyticsEvent:(AnalyticsEvent * _Nonnull)event;
 @end
 
 @protocol MeppDeviceStatusManagerDelegate;
@@ -278,15 +288,15 @@ SWIFT_CLASS("_TtC7MeppSDK23MeppDeviceStatusManager")
 - (void)startBluetoothNotifier;
 @end
 
+
+@interface MeppDeviceStatusManager (SWIFT_EXTENSION(MeppSDK)) <CBCentralManagerDelegate>
+- (void)centralManagerDidUpdateState:(CBCentralManager * _Nonnull)central;
+@end
+
 @class CLLocationManager;
 
 @interface MeppDeviceStatusManager (SWIFT_EXTENSION(MeppSDK)) <CLLocationManagerDelegate>
 - (void)locationManager:(CLLocationManager * _Nonnull)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status;
-@end
-
-
-@interface MeppDeviceStatusManager (SWIFT_EXTENSION(MeppSDK)) <CBCentralManagerDelegate>
-- (void)centralManagerDidUpdateState:(CBCentralManager * _Nonnull)central;
 @end
 
 enum ReachableStatus : NSInteger;
@@ -302,7 +312,6 @@ SWIFT_PROTOCOL("_TtP7MeppSDK31MeppDeviceStatusManagerDelegate_")
 SWIFT_CLASS("_TtC7MeppSDK7MeppSDK")
 @interface MeppSDK : NSObject
 + (void)setAppToken:(NSString * _Nonnull)appToken forHost:(NSString * _Nonnull)apiHost completion:(void (^ _Nullable)(BOOL successful))completion;
-+ (void)setupGoogleAnalyticsWithID:(NSString * _Nonnull)id;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 

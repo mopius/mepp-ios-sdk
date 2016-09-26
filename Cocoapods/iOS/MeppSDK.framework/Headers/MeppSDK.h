@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double MeppSDKVersionNumber;
 FOUNDATION_EXPORT const unsigned char MeppSDKVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <MeppSDK/PublicHeader.h>
-
-
