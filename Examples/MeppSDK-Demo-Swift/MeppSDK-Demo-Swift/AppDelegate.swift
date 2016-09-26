@@ -42,4 +42,8 @@ extension AppDelegate: MeppBeaconManagerDelegate {
     func didDiscoverBeacons(beacons: [DiscoveredBeacon]) {
         // get discovered beacons
     }
+    
+    func shouldTrackAnalyticsEvent(event: AnalyticsEvent) {
+        // track analytics event
+    }
 }

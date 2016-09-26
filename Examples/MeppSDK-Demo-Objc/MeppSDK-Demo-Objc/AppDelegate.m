@@ -41,12 +41,15 @@
 }
 
 - (void)didChangeSessionStatus:(NSString *)status critical:(BOOL)critical {
-    // not required
     NSLog(@"Did change session status: %@", status);
 }
 
 - (void)didDiscoverBeacons:(NSArray<DiscoveredBeacon *> *)beacons {
     //NSLog(@"Did discover beacons");
+}
+
+- (void)shouldTrackAnalyticsEvent:(AnalyticsEvent *)event {
+    // analytics tracking
 }
 
 @end

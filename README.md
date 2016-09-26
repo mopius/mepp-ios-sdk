@@ -205,6 +205,10 @@ extension AppDelegate: MeppBeaconManagerDelegate {
     func didDiscoverBeacons(beacons: [DiscoveredBeacon]) {
         // get discovered beacons
     }
+    
+    func shouldTrackAnalyticsEvent(event: AnalyticsEvent) {
+            // analytics tracking.
+    }
 }
 ```
 
@@ -220,6 +224,10 @@ extension AppDelegate: MeppBeaconManagerDelegate {
 
 - (void)didDiscoverBeacons:(NSArray<DiscoveredBeacon *> *)beacons {
     // get discovered beacons
+}
+
+- (void)shouldTrackAnalyticsEvent:(AnalyticsEvent *)event {
+    // analytics tracking.
 }
 ```
 
