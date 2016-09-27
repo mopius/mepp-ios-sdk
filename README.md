@@ -1,7 +1,7 @@
 # MEPP iOS SDK
 
 - [Overview](#overview)
-- [Installing iOS SDK](#installing-ios-sdk)
+- [Installing iOS SDK](#installing-the-ios-sdk)
     - [CocoaPods](#cocoapods)
 - [First Steps](#first-steps)
 - [Interacting with Beacons](#interacting-with-beacons)
@@ -27,7 +27,7 @@
 
 This document shows you a quick way to start using the MEPP SDK in your apps.
 
-## Installing iOS SDK
+## Installing the iOS SDK
 
 To use the MEPP SDK in your project, the minimum deployment target must be iOS 8.0.
 
@@ -156,6 +156,7 @@ Make sure `AppDelegate` conforms to `MeppBeaconManagerDelegate` protocol.
 ---
 
 We will use `application:didFinishLaunchingWithOptions:` to initiate the beacon manager and start the monitoring.
+Make sure to only use the hostname, not the URL of the backend.
 
 **Swift**
 ``` Swift
@@ -205,7 +206,7 @@ extension AppDelegate: MeppBeaconManagerDelegate {
     func didDiscoverBeacons(beacons: [DiscoveredBeacon]) {
         // get discovered beacons
     }
-    
+
     func shouldTrackAnalyticsEvent(event: AnalyticsEvent) {
             // analytics tracking.
     }
@@ -467,7 +468,7 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
  * **maxSessionTime: NSNumber?** The maximum session time.
 
 ### Content
- * **id: NSNumber?** The internal content ID. Use this to fetch content a by id.
+ * **contentId: NSNumber?** The internal content id. Use this to fetch content a by id.
  * **active: Bool?** Boolean if the content is active or not.
  * **contentType: String?** The type of the content (a.k.a use case).
  * **displayType: DisplayType?** The display type of the content. ["entry", "exit"]
@@ -495,6 +496,9 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
  * **minor: String?** The minor ID of the beacon.
 
 ## Changelog
+
+### 1.0.4 - 27 September 2016
+* Renamed id to contentId in the Content class (Objective-C compatibility)
 
 ### 1.0.3 - 26 September 2016
 * Added analytics support

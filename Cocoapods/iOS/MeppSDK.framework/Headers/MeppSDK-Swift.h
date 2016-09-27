@@ -162,8 +162,8 @@ typedef SWIFT_ENUM(NSInteger, BluetoothStatus) {
 SWIFT_CLASS("_TtC7MeppSDK7Content")
 @interface Content : NSObject
 
-/// The internal content ID. Use this to fetch content a by id.
-@property (nonatomic, strong) NSNumber * _Nullable id;
+/// The internal content id. Use this to fetch content a by id.
+@property (nonatomic, strong) NSNumber * _Nullable contentId;
 
 /// The type of the content.
 @property (nonatomic, copy) NSString * _Nullable contentType;
