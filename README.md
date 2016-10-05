@@ -474,8 +474,8 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
  * **displayType: DisplayType?** The display type of the content. ["entry", "exit"]
  * **delayTime: NSNumber?** The delay after the content should be shown in seconds.
  * **coolDownTime: NSNumber?** The cooldown time in seconds after which the SDK notifies for a content again.
- * **activeDateStart: String?** This indicates the date from which a content is active.
- * **activeDateStop: String?** This indicates the date until a content is active.
+ * **activeDateStart: NSDate?** This indicates the date from which a content is active.
+ * **activeDateStop: NSDate?** This indicates the date until a content is active.
  * **activeTimeStart: String?** This delivers the time of the day from which a content is active.
  * **activeTimeStop: String?** This delivers the time of the day until a content is active.
  * **metaInfo: MetaInfo?** The meta info of the content.
@@ -496,6 +496,11 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
  * **minor: String?** The minor ID of the beacon.
 
 ## Changelog
+
+### 1.0.5 - 5 October 2016
+* Updated 3rd party frameworks
+* activeDateStart and activeDateStop are now from type NSDate
+* Fixed a bug with the persistent storage of the coolDownTime
 
 ### 1.0.4 - 27 September 2016
 * Renamed id to contentId in the Content class (Objective-C compatibility)

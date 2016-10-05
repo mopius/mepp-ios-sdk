@@ -93,10 +93,10 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 #endif
 #if defined(__has_feature) && __has_feature(modules)
 @import ObjectiveC;
+@import Foundation;
 @import CoreBluetooth;
 @import KontaktSDK;
 @import CoreLocation;
-@import Foundation;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -132,9 +132,10 @@ SWIFT_CLASS("_TtC7MeppSDK9AppConfig")
 @end
 
 @class CLBeacon;
+@class NSCoder;
 
 SWIFT_CLASS("_TtC7MeppSDK6Beacon")
-@interface Beacon : NSObject
+@interface Beacon : NSObject <NSCoding>
 
 /// The UUID of the beacon.
 @property (nonatomic, copy) NSString * _Nullable uuid;
@@ -142,7 +143,11 @@ SWIFT_CLASS("_TtC7MeppSDK6Beacon")
 @property (nonatomic, copy) NSString * _Nullable minor;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithClbeacon:(CLBeacon * _Nonnull)clbeacon OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
 - (nonnull instancetype)initWithUUID:(NSString * _Nonnull)uuid major:(NSString * _Nonnull)major minor:(NSString * _Nonnull)minor OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, readonly, copy) NSString * _Nonnull description;
+@property (nonatomic, readonly, copy) NSString * _Nonnull debugDescription;
 @end
 
 typedef SWIFT_ENUM(NSInteger, BluetoothStatus) {
@@ -156,6 +161,7 @@ typedef SWIFT_ENUM(NSInteger, BluetoothStatus) {
 @interface CBCentralManager (SWIFT_EXTENSION(MeppSDK))
 @end
 
+@class NSDate;
 @class MetaInfo;
 @class TextRecord;
 
@@ -175,8 +181,8 @@ SWIFT_CLASS("_TtC7MeppSDK7Content")
 @property (nonatomic, strong) NSNumber * _Nullable coolDownTime;
 
 /// This indicates the date from which a content is active.
-@property (nonatomic, copy) NSString * _Nullable activeDateStart;
-@property (nonatomic, copy) NSString * _Nullable activeDateStop;
+@property (nonatomic, strong) NSDate * _Nullable activeDateStart;
+@property (nonatomic, strong) NSDate * _Nullable activeDateStop;
 @property (nonatomic, copy) NSString * _Nullable activeTimeStart;
 @property (nonatomic, copy) NSString * _Nullable activeTimeStop;
 
@@ -188,6 +194,8 @@ SWIFT_CLASS("_TtC7MeppSDK7Content")
 
 /// This extra infos as a dictionary (e.g. the legal text).
 @property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull extraInfo;
+@property (nonatomic, readonly, copy) NSString * _Nonnull description;
+@property (nonatomic, readonly, copy) NSString * _Nonnull debugDescription;
 @end
 
 @class KTKNearbyDevice;
@@ -239,6 +247,7 @@ SWIFT_CLASS("_TtC7MeppSDK17MeppBeaconManager")
 @interface MeppBeaconManager : NSObject
 @property (nonatomic, strong) id <MeppBeaconManagerDelegate> _Nullable delegate;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithDelegate:(id <MeppBeaconManagerDelegate> _Nonnull)delegate OBJC_DESIGNATED_INITIALIZER;
 - (void)startMonitoring;
 - (void)stopMonitoringForRegion:(KTKBeaconRegion * _Nullable)region;
 - (void)stopDiscovery;
@@ -338,6 +347,8 @@ SWIFT_CLASS("_TtC7MeppSDK10TextRecord")
 @property (nonatomic, copy) NSString * _Nullable name;
 @property (nonatomic, copy) NSString * _Nullable text;
 @property (nonatomic, strong) LanguageCode * _Nullable languageCode;
+@property (nonatomic, readonly, copy) NSString * _Nonnull description;
+@property (nonatomic, readonly, copy) NSString * _Nonnull debugDescription;
 @end
 
 #pragma clang diagnostic pop
