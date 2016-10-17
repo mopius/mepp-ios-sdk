@@ -497,6 +497,9 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
 
 ## Changelog
 
+### 1.0.6 - 17 October 2016
+* FIX: Don't show Bluetooth warning dialog anymore
+
 ### 1.0.5 - 5 October 2016
 * Updated 3rd party frameworks
 * activeDateStart and activeDateStop are now from type NSDate
