@@ -497,6 +497,9 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
 
 ## Changelog
 
+### 1.0.7 - 15 November 2016
+* FIX: Don't show content multiple times if different beacons provide the same content.
+
 ### 1.0.6 - 17 October 2016
 * FIX: Don't show Bluetooth warning dialog anymore
 
