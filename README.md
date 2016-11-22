@@ -56,6 +56,7 @@ post_install do |installer_representation|
   installer_representation.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['SWIFT_VERSION'] = '2.3'
+      config.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'NO'
     end
   end
 end
@@ -496,6 +497,9 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
  * **minor: String?** The minor ID of the beacon.
 
 ## Changelog
+
+### 1.0.8 - 22 November 2016
+* FIX: Don't include swift standard libraries in release builds.
 
 ### 1.0.7 - 15 November 2016
 * FIX: Don't show content multiple times if different beacons provide the same content.
