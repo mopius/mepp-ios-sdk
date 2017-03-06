@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                    = 'MeppSDK'
-  spec.version                 = '1.0.8'
+  spec.version                 = '1.0.9'
   spec.summary                 = 'Mepp SDK for iOS'
   spec.author                  = { 'MEPP' => 'office@mopius.at' }
   spec.homepage                = 'https://www.mepp.at'
@@ -18,10 +18,9 @@ Pod::Spec.new do |spec|
 
   spec.requires_arc  = true
   
-  spec.dependency 'AFDateHelper', '3.4.2'
-  spec.dependency 'Alamofire', '3.5.1'
-  spec.dependency 'AlamofireObjectMapper', '3.0.2'
-  spec.dependency 'KontaktSDK', '1.2.3'
-  spec.dependency 'ObjectMapper', '1.5.0'
-  spec.dependency 'ReachabilitySwift', '2.4'
+  spec.dependency 'AFDateHelper', '~> 4.0'
+  spec.dependency 'Alamofire', '~> 4.0'
+  spec.dependency 'AlamofireObjectMapper', '~> 4.0'
+  spec.dependency 'KontaktSDK', '1.4.2'
+  spec.dependency 'ReachabilitySwift', '~> 3'
 end

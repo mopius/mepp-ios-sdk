@@ -5,8 +5,11 @@
     - [CocoaPods](#cocoapods)
 - [First Steps](#first-steps)
 - [Interacting with Beacons](#interacting-with-beacons)
-  - [Basic Setup](#basic-setup)
+  - [Beacon Basic Setup](#beacon-basic-setup)
   - [Beacon Delegate Callbacks](#beacon-delegate-callbacks)
+- [Interacting with Geofences](#interacting-with-geofences)
+  - [Geofence Basic Setup](#geofence-basic-setup)
+  - [Geofence Delegate Callbacks](#geofence-delegate-callbacks)
 - [Communicating with the MEPP Rest API](#communicating-with-the-mepp-rest-api)
   - [MeppAPIClient](#meppapiclient)
     - [Get Application Configuration](#get-application-configuration)
@@ -20,7 +23,10 @@
   - [Content](#content)
   - [MetaInfo](#metainfo)
   - [TextRecord](#textrecord)
+  - [LanguageCode](#languagecode)
+  - [LinkedContent](#linkedcontent)
   - [Beacon](#beacon)
+  - [GeoLocation](#geolocation)
 - [Changelog](#changelog)
 
 ## Overview
@@ -31,9 +37,7 @@ This document shows you a quick way to start using the MEPP SDK in your apps.
 
 To use the MEPP SDK in your project, the minimum deployment target must be iOS 8.0.
 
-If your try to use this framework with an existing Swift project, make sure that you existing project uses Swift 2.3 (Legacy Swift). Swift >= 3.0 is currently not supported.
-
-You have to set **Use Legacy Swift Language Version** to **Yes** in your existing or new Project.
+If your try to use this framework with an existing Swift project, make sure that you existing project uses Swift >= 3.0.
 
 ### CocoaPods
 
@@ -54,7 +58,6 @@ pod 'MeppSDK', :git => 'https://github.com/mopius/mepp-ios-sdk.git'
 post_install do |installer_representation|
   installer_representation.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '2.3'
       config.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'NO'
     end
   end
@@ -77,7 +80,7 @@ For your app to work correctly you have to add a new key to your project's plist
 
 ``` XML
 <key>NSLocationAlwaysUsageDescription</key>
-<string>Required for iOS >= 8 compatibilty</string>
+<string>Required for iOS >= 8 compatibility</string>
 ```
 
 The string can be empty, the content is not important.
@@ -121,7 +124,7 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 ## Interacting with Beacons
 In the following example we'll show you how to create a simple application to monitor beacons and get back content informations using the MEPP SDK.
 
-### Basic Setup
+### Beacon Basic Setup
 In our example, we have used the **AppDelegate.swift** for simplicity. You would probably want to create your own class in a real application.
 
 First we'll import the MEPP SDK.
@@ -232,6 +235,112 @@ extension AppDelegate: MeppBeaconManagerDelegate {
 }
 ```
 
+## Interacting with Geofences
+In the following example we'll show you how to create a simple application to monitor geofences and get back content informations using the MEPP SDK.
+
+### Geofence Basic Setup
+In our example, we have used the **AppDelegate.swift** for simplicity. You would probably want to create your own class in a real application.
+
+First we'll import the MEPP SDK.
+
+**Swift**
+``` Swift
+import MeppSDK
+```
+
+**Objective-C**
+``` Objective-C
+@import MeppSDK;
+```
+
+We'll add the MeppGeofenceManager object as a property.
+MeppGeofenceManager informs its delegates when a new content is available.
+
+**Swift**
+``` Swift
+private var meppGeofenceManager: MeppGeofenceManager?
+```
+
+**Objective-C**
+``` Objective-C
+@property (readwrite, nonatomic, strong) MeppGeofenceManager *meppGeofenceManager;
+```
+
+---
+
+Make sure `AppDelegate` conforms to `MeppGeofenceManagerDelegate` protocol.
+
+---
+
+We will use `application:didFinishLaunchingWithOptions:` to initiate the geofence manager and start the monitoring.
+Make sure to only use the hostname, not the URL of the backend.
+
+**Swift**
+``` Swift
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+  // Set MeppSDK
+  MeppSDK.setAppToken("A1B2C3D4", forHost: "example.com") { (successful) in
+            if successful {
+              // init beacon manager
+              self.meppGeofenceManager = MeppGeofenceManager()
+              self.meppGeofenceManager!.delegate = self
+              self.meppGeofenceManager!.startMonitoring()
+            }
+        }
+
+	return true
+}
+```
+
+**Objective-C**
+``` Objective-C
+[MeppSDK setAppToken:@"A1B2C3D4" forHost:@"example.com" completion:^(BOOL successful) {
+        if (successful) {
+            // init beacon manager
+            self.meppGeofenceManager = [[MeppGeofenceManager alloc] init];
+            self.meppGeofenceManager.delegate = self;
+            [self.meppGeofenceManager startMonitoring];
+        }
+    }];
+```
+
+### Geofence Delegate Callbacks
+
+Now we'll add the delegate methods for the geofence manager.
+
+**Swift**
+``` Swift
+extension AppDelegate: MeppGeofenceManagerDelegate {
+  func didFindGeofenceContent(content: Content) {
+        // new content
+    }
+
+    func didChangeStatus(status: String, critical: Bool) {
+        // get some session infos, for debugging purposes.
+    }
+
+    func geofencesDidChange(locations: [GeoLocation]) {
+        // get discovered beacons
+    }
+}
+```
+
+**Objective-C**
+``` Objective-C
+- (void)didFindGeofenceContent:(Content *)content {
+    // new content
+}
+
+- (void)didChangeStatus:(NSString *)status critical:(BOOL)critical {
+    // get some session infos, for debugging purposes.
+}
+
+- (void)geofencesDidChange:(NSArray<GeoLocation *> *)locations {
+    // get discovered beacons
+}
+```
+
 ## Communicating with the MEPP Rest API
 
 The MEPP Rest API provides some resources to query/update our cloud platform.
@@ -320,7 +429,7 @@ meppAPIClient?.contentById(1, user: "swift-client", completion: { (successful, c
     }];
 ```
 
-### Get Content by Hardware
+### Get Content by Beacon Hardware
 
 **Swift**
 ``` Swift
@@ -329,7 +438,7 @@ let beacon = Beacon()
         beacon.major = "1"
         beacon.minor = "2"
 
-        meppAPIClient?.contentByHardware(beacon, user: "swift-client", completion: { (successful, entryContent, exitContent) in
+        meppAPIClient?.contentByHardwareBeacon(beacon, user: "swift-client", completion: { (successful, entryContent, exitContent) in
             if successful {
                 if let entryContent = entryContent {
                     print ("entry content: \(entryContent.textRecord?.name)")
@@ -349,7 +458,7 @@ Beacon *beacon = [[Beacon alloc] init];
     beacon.major = @"1";
     beacon.minor = @"2";
 
-    [self.apiClient contentByHardware:beacon user:@"objc-client" completion:^(BOOL successful, Content * _Nullable entryContent, Content * _Nullable exitContent) {
+    [self.apiClient contentByHardwareBeacon:beacon user:@"objc-client" completion:^(BOOL successful, Content * _Nullable entryContent, Content * _Nullable exitContent) {
         if (successful) {
             if (entryContent.textRecord != nil) {
                 TextRecord *textRecord = entryContent.textRecord;
@@ -480,6 +589,8 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
  * **activeTimeStop: String?** This delivers the time of the day until a content is active.
  * **metaInfo: MetaInfo?** The meta info of the content.
  * **textRecord: TextRecord?** The text record of the content.
+ * **extraInfo: [String:AnyObject]?** The extra infos as a dictionary (e.g. the legal text).
+ * **linkedContent: [LinkedContent]?** The linked contents.
 
 ### MetaInfo
  * **imageURI: String?** The image URI of the meta info.
@@ -488,14 +599,42 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
 ### TextRecord
  * **name: String?** The name of the text record.
  * **text: String?** The text of the text record.
- * **languageCode: languageCode?** The language code of the text record.
+ * **languageCode: LanguageCode?** The language code of the text record.
+
+### LanguageCode
+ * **code: String?** The language code.
+ * **name: String?** The human readable name of the language code.
+
+### LinkedContent
+ * **contentId: NSNumber?** The contentId of the linked content.
+ * **name: String?** The name of the linked content.
+ * **contentType: String?** The content type of the linked content.
+ * **metaInfo: MetaInfo?** The meta info of the linked content.
+ * **linkedContent: [LinkedContent]?** The linked contents.
 
 ### Beacon
- * **uuid: String?** The UUID of the beacon.
+ * **contentId: String?** The UUID of the beacon.
  * **major: String?** The major ID of the beacon.
  * **minor: String?** The minor ID of the beacon.
 
+### GeoLocation
+ * **coordinate: CLLocationCoordinate2D** The location of the geofence.
+ * **radius: CLLocationDistance** The radius of the geofence.
+ * **identifier: String** The identifier of the geofence.
+
 ## Changelog
+
+### 1.0.9 - 6 March 2017
+* Changed analytics delegate.
+* Added reset methods for MeppBeaconManager and MeppGeofenceManager.
+* Added language code support.
+* Added QR code support.
+* Added NFC code (URL) support.
+* Added Geofence support.
+* Added linked content support.
+* Changed 3rd party frameworks.
+* Changed framework to Swift 3.
+* Fixed problems with session storage.
 
 ### 1.0.8 - 22 November 2016
 * FIX: Don't include swift standard libraries in release builds.
@@ -526,4 +665,4 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
 * Changed Deployment Target to iOS 8.0
 
 ### 1.0.0 - 19 September 2016
-* First release fo the iOS SDK
+* First release for the iOS SDK
