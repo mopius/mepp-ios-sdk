@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var meppBeaconManager: MeppBeaconManager?
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         MeppSDK.setAppToken("A1B2C3D4", forHost: "example.com") { (successful) in
             if successful {
@@ -31,19 +31,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: MeppBeaconManagerDelegate {
-    func didFindNewContent(content: Content) {
+    func didFindNewContent(_ content: Content) {
         print("Did find content: \(content.contentType)")
     }
     
-    func didChangeSessionStatus(status: String, critical: Bool) {
+    func didChangeSessionStatus(_ status: String, critical: Bool) {
         print("Did change session status: \(status)")
     }
     
-    func didDiscoverBeacons(beacons: [DiscoveredBeacon]) {
+    func didDiscoverBeacons(_ beacons: [DiscoveredBeacon]) {
         // get discovered beacons
     }
     
-    func shouldTrackAnalyticsEvent(event: AnalyticsEvent) {
+    func shouldTrackAnalyticsEvent(_ event: AnalyticsEvent) {
         // track analytics event
     }
 }
