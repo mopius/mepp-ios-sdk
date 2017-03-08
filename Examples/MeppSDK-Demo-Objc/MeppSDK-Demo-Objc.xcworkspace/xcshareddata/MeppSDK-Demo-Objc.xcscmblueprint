@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "5D87E7EB7A493A0355B52BF8B58E17EDACFCE20A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "9166BC379C84DAE6295FC02CADA05C32B490DB99" : 9223372036854775807,
+    "5D87E7EB7A493A0355B52BF8B58E17EDACFCE20A" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E9E8DD34-BCC3-4F88-BD5D-A301B2A855F9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "9166BC379C84DAE6295FC02CADA05C32B490DB99" : "mepp-ios-sdk\/",
+    "5D87E7EB7A493A0355B52BF8B58E17EDACFCE20A" : "mepp-ios-sdk-github\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MeppSDK-Demo-Objc",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Examples\/MeppSDK-Demo-Objc\/MeppSDK-Demo-Objc.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mopius\/mepp-ios-sdk.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5D87E7EB7A493A0355B52BF8B58E17EDACFCE20A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "intern.appaya.at:MEPP\/mepp-ios-sdk.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9166BC379C84DAE6295FC02CADA05C32B490DB99"
+    }
+  ]
+}

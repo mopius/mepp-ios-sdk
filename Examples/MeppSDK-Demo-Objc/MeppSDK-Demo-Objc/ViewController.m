@@ -51,7 +51,7 @@
 }
 
 - (void)getAppConfig {
-    [self.apiClient appConfig:^(BOOL successful, AppConfig * _Nullable appConfig) {
+    [self.apiClient appConfig:^(BOOL successful, AppConfig * _Nullable appConfig, NSInteger statusCode) {
         if (successful) {
             if (appConfig != nil) {
                 NSLog(@"app config min sdk version: %@", appConfig.minSDK);
@@ -62,7 +62,7 @@
 }
 
 - (void)fetchContentById:(int)id {
-    [self.apiClient contentById:id user:@"objc-client" completion:^(BOOL succesful, Content * _Nullable content) {
+    [self.apiClient contentById:id user:@"objc-client" completion:^(BOOL succesful, Content * _Nullable content, NSInteger statusCode) {
         if (succesful) {
             if (content.textRecord != nil) {
                 TextRecord *textRecord = content.textRecord;
