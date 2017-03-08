@@ -381,7 +381,7 @@ After initialization, the MeppAPIClient object acts as a facade between your app
 
 **Swift**
 ``` Swift
-meppAPIClient?.appConfig({ (successful, appConfig) in
+meppAPIClient?.appConfig({ (successful, appConfig, statusCode) in
             if successful {
                 if let config = appConfig {
                     print("app config min sdk version: \(config.minSDK)")
@@ -393,7 +393,7 @@ meppAPIClient?.appConfig({ (successful, appConfig) in
 
 **Objective-C**
 ``` Objective-C
-[apiClient appConfig:^(BOOL successful, AppConfig * _Nullable appConfig) {
+[apiClient appConfig:^(BOOL successful, AppConfig * _Nullable appConfig, NSInteger statusCode) {
         if (successful) {
             if (appConfig != nil) {
                 NSLog(@"app config min sdk version: %@", appConfig.minSDK);
@@ -407,7 +407,7 @@ meppAPIClient?.appConfig({ (successful, appConfig) in
 
 **Swift**
 ``` Swift
-meppAPIClient?.contentById(1, user: "swift-client", completion: { (successful, content) in
+meppAPIClient?.contentById(1, user: "swift-client", completion: { (successful, content, statusCode) in
             if successful {
                 print("content name: \(content?.textRecord?.name)")
             }
@@ -416,7 +416,7 @@ meppAPIClient?.contentById(1, user: "swift-client", completion: { (successful, c
 
 **Objective-C**
 ``` Objective-C
-[apiClient contentById:1 user:@"objc-client" completion:^(BOOL successful, Content * _Nullable content) {
+[apiClient contentById:1 user:@"objc-client" completion:^(BOOL successful, Content * _Nullable content, NSInteger statusCode) {
         if (successful) {
             if (content.textRecord != nil) {
                 TextRecord *textRecord = content.textRecord;
@@ -438,7 +438,7 @@ let beacon = Beacon()
         beacon.major = "1"
         beacon.minor = "2"
 
-        meppAPIClient?.contentByHardwareBeacon(beacon, user: "swift-client", completion: { (successful, entryContent, exitContent) in
+        meppAPIClient?.contentByHardwareBeacon(beacon, user: "swift-client", completion: { (successful, entryContent, exitContent, statusCode) in
             if successful {
                 if let entryContent = entryContent {
                     print ("entry content: \(entryContent.textRecord?.name)")
@@ -458,7 +458,7 @@ Beacon *beacon = [[Beacon alloc] init];
     beacon.major = @"1";
     beacon.minor = @"2";
 
-    [self.apiClient contentByHardwareBeacon:beacon user:@"objc-client" completion:^(BOOL successful, Content * _Nullable entryContent, Content * _Nullable exitContent) {
+    [self.apiClient contentByHardwareBeacon:beacon user:@"objc-client" completion:^(BOOL successful, Content * _Nullable entryContent, Content * _Nullable exitContent, NSInteger statusCode) {
         if (successful) {
             if (entryContent.textRecord != nil) {
                 TextRecord *textRecord = entryContent.textRecord;
@@ -623,6 +623,9 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
  * **identifier: String** The identifier of the geofence.
 
 ## Changelog
+
+### 1.2.0 - 8 March 2017
+* Fixed problems with Objective-C bridges.
 
 ### 1.0.9 - 6 March 2017
 * Changed analytics delegate.

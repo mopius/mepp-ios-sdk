@@ -328,12 +328,38 @@ typedef SWIFT_ENUM(NSInteger, LocationStatus) {
 
 SWIFT_CLASS("_TtC7MeppSDK13MeppAPIClient")
 @interface MeppAPIClient : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger statusCodeError;)
++ (NSInteger)statusCodeError;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithAppToken:(NSString * _Nonnull)appToken apiHost:(NSString * _Nonnull)apiHost OBJC_DESIGNATED_INITIALIZER;
+/**
+  Get all app tokens for the user.
+*/
+- (void)appConfig:(void (^ _Nonnull)(BOOL, AppConfig * _Nullable, NSInteger))completion;
+/**
+  Get content by id.
+*/
+- (void)contentById:(NSInteger)id user:(NSString * _Nonnull)user completion:(void (^ _Nonnull)(BOOL, Content * _Nullable, NSInteger))completion;
 /**
   Get content by hardware for BLE.
 */
 - (void)contentByHardware:(Beacon * _Nonnull)beacon user:(NSString * _Nonnull)user completion:(void (^ _Nonnull)(BOOL, Content * _Nullable, Content * _Nullable))completion;
+/**
+  Get content by hardware for a BLE beacon.
+*/
+- (void)contentByHardwareBeacon:(Beacon * _Nonnull)beacon user:(NSString * _Nonnull)user completion:(void (^ _Nonnull)(BOOL, Content * _Nullable, Content * _Nullable, NSInteger))completion;
+/**
+  Get content by hardware for a QR code.
+*/
+- (void)contentByHardwareQR:(NSString * _Nonnull)qrId user:(NSString * _Nonnull)user completion:(void (^ _Nonnull)(BOOL, Content * _Nullable, NSInteger))completion;
+/**
+  Get content by hardware for a NFC tag.
+*/
+- (void)contentByHardwareNFC:(NSString * _Nonnull)nfcId user:(NSString * _Nonnull)user completion:(void (^ _Nonnull)(BOOL, Content * _Nullable, NSInteger))completion;
+/**
+  Get content by hardware for a geofence.
+*/
+- (void)contentByHardwareGeofence:(NSString * _Nonnull)geofenceId user:(NSString * _Nonnull)user completion:(void (^ _Nonnull)(BOOL, Content * _Nullable, Content * _Nullable, NSInteger))completion;
 @end
 
 @protocol MeppBeaconManagerDelegate;
