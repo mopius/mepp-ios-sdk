@@ -297,7 +297,7 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 ``` Objective-C
 [MeppSDK setAppToken:@"A1B2C3D4" forHost:@"example.com" completion:^(BOOL successful) {
         if (successful) {
-            // init beacon manager
+            // init geofence manager
             self.meppGeofenceManager = [[MeppGeofenceManager alloc] init];
             self.meppGeofenceManager.delegate = self;
             [self.meppGeofenceManager startMonitoring];
@@ -623,6 +623,9 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
  * **identifier: String** The identifier of the geofence.
 
 ## Changelog
+
+### 1.2.1 - 22 March 2017
+* Fixed problems with Objective-C bridges.
 
 ### 1.2.0 - 8 March 2017
 * Fixed problems with Objective-C bridges.
