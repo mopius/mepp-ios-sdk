@@ -13,9 +13,7 @@
 @property (readwrite, nonatomic, strong) MeppBeaconManager *beaconManager;
 @end
 
-
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [MeppSDK setAppToken:@"A1B2C3D4" forHost:@"example.com" completion:^(BOOL successful) {

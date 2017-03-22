@@ -10,7 +10,7 @@
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E9E8DD34-BCC3-4F88-BD5D-A301B2A855F9",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "9166BC379C84DAE6295FC02CADA05C32B490DB99" : "mepp-ios-sdk\/",
-    "5D87E7EB7A493A0355B52BF8B58E17EDACFCE20A" : "mepp-ios-sdk-github\/"
+    "5D87E7EB7A493A0355B52BF8B58E17EDACFCE20A" : "mepp-ios-sdk\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "MeppSDK-Demo-Objc",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
