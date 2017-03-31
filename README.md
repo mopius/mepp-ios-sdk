@@ -579,6 +579,7 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
 ### Content
  * **contentId: NSNumber?** The internal content id. Use this to fetch content a by id.
  * **active: Bool?** Boolean if the content is active or not.
+ * **isActive: Bool** Boolean if the content is active or not. This is a Bridging method for Objective-C to expose active. Always use active in Swift.
  * **contentType: String?** The type of the content (a.k.a use case).
  * **displayType: DisplayType?** The display type of the content. ["entry", "exit"]
  * **delayTime: NSNumber?** The delay after the content should be shown in seconds.
@@ -623,6 +624,9 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
  * **identifier: String** The identifier of the geofence.
 
 ## Changelog
+
+### 1.2.2 - 31 March 2017
+* Property 'active' in 'Content' exposed to Objective-C.
 
 ### 1.2.1 - 22 March 2017
 * Fixed problems with Objective-C bridges.
