@@ -137,7 +137,7 @@
 				TargetAttributes = {
 					CD27463E1D92CF3700DA62F5 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 6X47Q5RERE;
+						DevelopmentTeam = S6UQ476FEN;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -352,7 +352,7 @@
 			baseConfigurationReference = B14F39894D6677FA257E28B5 /* Pods-MeppSDK-Demo-Objc.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6X47Q5RERE;
+				DEVELOPMENT_TEAM = S6UQ476FEN;
 				INFOPLIST_FILE = "MeppSDK-Demo-Objc/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "at.mepp.MeppSDK-Demo-Objc";
@@ -366,7 +366,7 @@
 			baseConfigurationReference = B68DAA83A875C08A2240EF2E /* Pods-MeppSDK-Demo-Objc.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6X47Q5RERE;
+				DEVELOPMENT_TEAM = S6UQ476FEN;
 				INFOPLIST_FILE = "MeppSDK-Demo-Objc/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "at.mepp.MeppSDK-Demo-Objc";

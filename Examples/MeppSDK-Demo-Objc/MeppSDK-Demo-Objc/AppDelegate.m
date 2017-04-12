@@ -16,7 +16,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [MeppSDK setAppToken:@"A1B2C3D4" forHost:@"example.com" completion:^(BOOL successful) {
+    [MeppSDK setAppToken:@"IoZNXZhedQfUxUz9KmqklQ" forHost:@"api.menuspeak.at" completion:^(BOOL successful) {
         if (successful) {
             NSLog(@"MeppSDK successful initialized");
        

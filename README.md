@@ -625,6 +625,9 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
 
 ## Changelog
 
+### 1.2.3 - 12 April 2017
+* Bitcode deactivated.
+
 ### 1.2.2 - 31 March 2017
 * Property 'active' in 'Content' exposed to Objective-C.
 
