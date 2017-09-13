@@ -22,7 +22,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [MeppSDK setAppToken:@"Ji1nsyMgwCGMYG0OHuVPeg" forHost:@"mbeacon.iqm.cc" completion:^(BOOL successful) {
+    [MeppSDK setAppToken:@"A1B2C3D4" forHost:@"example.com" completion:^(BOOL successful) {
         if (successful) {
             
             self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:NULL];
