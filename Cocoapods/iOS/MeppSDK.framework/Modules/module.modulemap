@@ -7,4 +7,5 @@ framework module MeppSDK {
 
 module MeppSDK.Swift {
     header "MeppSDK-Swift.h"
+    requires objc
 }

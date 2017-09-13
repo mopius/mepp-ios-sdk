@@ -81,6 +81,12 @@ For your app to work correctly you have to add a new key to your project's plist
 ``` XML
 <key>NSLocationAlwaysUsageDescription</key>
 <string>Required for iOS >= 8 compatibility</string>
+
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>Background Location is required for the MEPP SDK</string>
+
+<key>NSLocationUsageDescription</key>
+<string>Background Location is required for the MEPP SDK</string>
 ```
 
 The string can be empty, the content is not important.
@@ -103,7 +109,7 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 
   // Set API and Google Analytics Settings
   MeppSDK.setAppToken("A1B2C3D4", forHost: "example.com") { (successful) in
-            // to something after MeppSDK is initialized
+            // do something after MeppSDK is initialized
         }
 
 	return true
@@ -114,17 +120,14 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 ``` Objective-C
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [MeppSDK setAppToken:@"A1B2C3D4" forHost:@"example.com" completion:^(BOOL successful) {
-        // to something after MeppSDK is initialized
+        // do something after MeppSDK is initialized
     }];
 
     return YES;
 }
 ```
 
-## Interacting with Beacons
-In the following example we'll show you how to create a simple application to monitor beacons and get back content informations using the MEPP SDK.
-
-### Beacon Basic Setup
+### Basic Setup
 In our example, we have used the **AppDelegate.swift** for simplicity. You would probably want to create your own class in a real application.
 
 First we'll import the MEPP SDK.
@@ -139,26 +142,26 @@ import MeppSDK
 @import MeppSDK;
 ```
 
-We'll add the MeppBeaconManager object as a property.
-MeppBeaconManager informs its delegates when a new content is available.
+We'll add the MeppManager object as a property.
+MeppManager informs its delegates when a new content is available.
 
 **Swift**
 ``` Swift
-private var meppBeaconManager: MeppBeaconManager?
+private var meppManager: MeppManager?
 ```
 
 **Objective-C**
 ``` Objective-C
-@property (readwrite, nonatomic, strong) MeppBeaconManager *beaconManager;
+@property (readwrite, nonatomic, strong) MeppManager *meppManager;
 ```
 
 ---
 
-Make sure `AppDelegate` conforms to `MeppBeaconManagerDelegate` protocol.
+Make sure `AppDelegate` conforms to `MeppManagerDelegate` protocol.
 
 ---
 
-We will use `application:didFinishLaunchingWithOptions:` to initiate the beacon manager and start the monitoring.
+We will use `application:didFinishLaunchingWithOptions:` to initiate the manager and start the monitoring.
 Make sure to only use the hostname, not the URL of the backend.
 
 **Swift**
@@ -168,10 +171,9 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
   // Set MeppSDK
   MeppSDK.setAppToken("A1B2C3D4", forHost: "example.com") { (successful) in
             if successful {
-              // init beacon manager
-              self.meppBeaconManager = MeppBeaconManager()
-              self.meppBeaconManager!.delegate = self
-              self.meppBeaconManager!.startMonitoring()
+              // init MeppManager
+              self.meppManager = MeppManager(delegate: self)
+              self.meppManager?.startMonitoring()
             }
         }
 
@@ -183,161 +185,54 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 ``` Objective-C
 [MeppSDK setAppToken:@"A1B2C3D4" forHost:@"example.com" completion:^(BOOL successful) {
         if (successful) {
-            // init beacon manager
-            self.beaconManager = [[MeppBeaconManager alloc] init];
-            self.beaconManager.delegate = self;
-            [self.beaconManager startMonitoring];
+            // init MeppManager
+            self.meppManager = [[MeppManager alloc] initWithDelegate:self];
+            [self.meppManager startMonitoring];
         }
     }];
 ```
 
-### Beacon Delegate Callbacks
+### Delegate Callbacks
 
-Now we'll add the delegate methods for the beacon manager.
+Now we'll add the delegate methods for the manager.
 
 **Swift**
 ``` Swift
-extension AppDelegate: MeppBeaconManagerDelegate {
-  func didFindNewContent(content: Content) {
-        // new content
-    }
-
-    func didChangeSessionStatus(status: String, critical: Bool) {
-        // get some session infos, for debugging purposes.
-    }
-
-    func didDiscoverBeacons(beacons: [DiscoveredBeacon]) {
-        // get discovered beacons
-    }
-
-    func shouldTrackAnalyticsEvent(event: AnalyticsEvent) {
-            // analytics tracking.
-    }
-}
-```
-
-**Objective-C**
-``` Objective-C
-- (void)didFindNewContent:(Content *)content {
+extension AppDelegate : MeppManagerDelegate{
+  func didFindContent(_ content: Content){
     // new content
-}
-
-- (void)didChangeSessionStatus:(NSString *)status critical:(BOOL)critical {
+  }
+  func didChangeStatus(_ status: String, critical: Bool){
     // get some session infos, for debugging purposes.
-}
-
-- (void)didDiscoverBeacons:(NSArray<DiscoveredBeacon *> *)beacons {
+  }
+  func geofencesDidChange(locations: [GeoLocation]){
+    // get new geofences
+  }
+  func didDiscoverBeacons(_ beacons: [CLBeacon]){
     // get discovered beacons
-}
-
-- (void)shouldTrackAnalyticsEvent:(AnalyticsEvent *)event {
+  }
+  func shouldTrackAnalyticsEvent(_ event: AnalyticsEvent){
     // analytics tracking.
-}
-```
-
-## Interacting with Geofences
-In the following example we'll show you how to create a simple application to monitor geofences and get back content informations using the MEPP SDK.
-
-### Geofence Basic Setup
-In our example, we have used the **AppDelegate.swift** for simplicity. You would probably want to create your own class in a real application.
-
-First we'll import the MEPP SDK.
-
-**Swift**
-``` Swift
-import MeppSDK
-```
-
-**Objective-C**
-``` Objective-C
-@import MeppSDK;
-```
-
-We'll add the MeppGeofenceManager object as a property.
-MeppGeofenceManager informs its delegates when a new content is available.
-
-**Swift**
-``` Swift
-private var meppGeofenceManager: MeppGeofenceManager?
-```
-
-**Objective-C**
-``` Objective-C
-@property (readwrite, nonatomic, strong) MeppGeofenceManager *meppGeofenceManager;
-```
-
----
-
-Make sure `AppDelegate` conforms to `MeppGeofenceManagerDelegate` protocol.
-
----
-
-We will use `application:didFinishLaunchingWithOptions:` to initiate the geofence manager and start the monitoring.
-Make sure to only use the hostname, not the URL of the backend.
-
-**Swift**
-``` Swift
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
-  // Set MeppSDK
-  MeppSDK.setAppToken("A1B2C3D4", forHost: "example.com") { (successful) in
-            if successful {
-              // init beacon manager
-              self.meppGeofenceManager = MeppGeofenceManager()
-              self.meppGeofenceManager!.delegate = self
-              self.meppGeofenceManager!.startMonitoring()
-            }
-        }
-
-	return true
+  }
 }
 ```
 
 **Objective-C**
 ``` Objective-C
-[MeppSDK setAppToken:@"A1B2C3D4" forHost:@"example.com" completion:^(BOOL successful) {
-        if (successful) {
-            // init geofence manager
-            self.meppGeofenceManager = [[MeppGeofenceManager alloc] init];
-            self.meppGeofenceManager.delegate = self;
-            [self.meppGeofenceManager startMonitoring];
-        }
-    }];
-```
-
-### Geofence Delegate Callbacks
-
-Now we'll add the delegate methods for the geofence manager.
-
-**Swift**
-``` Swift
-extension AppDelegate: MeppGeofenceManagerDelegate {
-  func didFindGeofenceContent(content: Content) {
-        // new content
-    }
-
-    func didChangeStatus(status: String, critical: Bool) {
-        // get some session infos, for debugging purposes.
-    }
-
-    func geofencesDidChange(locations: [GeoLocation]) {
-        // get discovered beacons
-    }
-}
-```
-
-**Objective-C**
-``` Objective-C
-- (void)didFindGeofenceContent:(Content *)content {
+- (void)didFindContent:(Content * _Nonnull)content{
     // new content
 }
-
-- (void)didChangeStatus:(NSString *)status critical:(BOOL)critical {
-    // get some session infos, for debugging purposes.
+- (void)didChangeStatus:(NSString * _Nonnull)status critical:(BOOL)critical{
+	// get some session infos, for debugging purposes.
 }
-
-- (void)geofencesDidChange:(NSArray<GeoLocation *> *)locations {
+- (void)geofencesDidChangeWithLocations:(NSArray<GeoLocation *> * _Nonnull)locations{
+	// get new geofences
+}
+- (void)didDiscoverBeacons:(NSArray<CLBeacon *> * _Nonnull)beacons{
     // get discovered beacons
+}
+- (void)shouldTrackAnalyticsEvent:(AnalyticsEvent * _Nonnull)event{
+    // analytics tracking.
 }
 ```
 
@@ -454,21 +349,73 @@ let beacon = Beacon()
 **Objective-C**
 ``` Objective-C
 Beacon *beacon = [[Beacon alloc] init];
-    beacon.uuid = @"D33255DF-8AFD-4A52-99A2-C7DD8E42583F";
-    beacon.major = @"1";
-    beacon.minor = @"2";
+beacon.uuid = @"D33255DF-8AFD-4A52-99A2-C7DD8E42583F";
+beacon.major = @"1";
+beacon.minor = @"2";
 
-    [self.apiClient contentByHardwareBeacon:beacon user:@"objc-client" completion:^(BOOL successful, Content * _Nullable entryContent, Content * _Nullable exitContent, NSInteger statusCode) {
-        if (successful) {
-            if (entryContent.textRecord != nil) {
-                TextRecord *textRecord = entryContent.textRecord;
-
-                if (textRecord.name != nil) {
-                    NSLog(@"entry content name: %@", textRecord.name);
-                }
+[apiClient contentByHardwareBeacon:beacon user:@"objc-client" completion:^(BOOL successful, Content * _Nullable entryContent, Content * _Nullable exitContent, NSInteger statusCode) {
+    if (successful) {
+        if (entryContent.textRecord != nil) {
+            TextRecord *textRecord = entryContent.textRecord;
+            if (textRecord.name != nil) {
+               NSLog(@"entry content name: %@", textRecord.name);
             }
         }
-    }];
+    }
+}];
+```
+
+### Get nearest Places from Position
+
+**Swift**
+``` Swift
+var location = CLLocationManager().location
+if (location != nil){
+  location = CLLocation(latitude: CLLocationDegrees(<Double>), longitude: CLLocationDegrees(<Double>))
+}
+meppAPIClient?.nearestPlaces(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, limit: <Int>, completion: {(successful, places, statusCode) in
+  if successful {
+    if places.count > 0 {
+      print ("places: \(places)")
+    }
+  }
+})
+```
+
+**Objective-C**
+``` Objective-C
+[apiClient nearestPlacesWithLatitude:<Double> longitude:<Double> limit:<NSInteger> completion:^(BOOL successfull, NSArray<Place *> * _Nullable places, NSInteger statusCode) {
+  if (successful){
+    if (places.count > 0){
+      printf("%s", places);
+    }
+  }
+}];
+```
+
+### Notify Mepp when Notification is displayed
+Mandatory for internal state and cleanup purposes.
+**Swift**
+``` Swift
+meppAPIClient?.notificationDisplayed(contentId: <String>)
+```
+
+**Objective-C**
+``` Objective-C
+[apiClient notificationDisplayedWithContentId:<String>];
+```
+
+### Notify Mepp when Notification is clicked
+Mandatory for internal state and cleanup purposes.
+
+**Swift**
+``` Swift
+meppAPIClient?.notificationClicked(contentId: <String>)
+```
+
+**Objective-C**
+``` Objective-C
+[self.meppApiClient notificationClickedWithContentId:<String>];
 ```
 
 ## Reachability
@@ -623,7 +570,21 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
  * **radius: CLLocationDistance** The radius of the geofence.
  * **identifier: String** The identifier of the geofence.
 
+### Place
+* **name: String?** Name of the Place
+* **latitude: Double?** Latitude Position
+* **longitude: Double?** Longitude Position
+* **content: Content?** Entry Content
+* **location: CLLocation?** Location calculated from Latitude and Longitude
+
 ## Changelog
+
+### 1.3.0 - 08 September 2017
+* MeppManager replaces GeofenceManager & BeaconManager08
+* notificationClicked & notificationDisplayed add for intern cleanup
+* new Funktion meppAPIClient.nearesPlaces returns nearest Places
+* Bluetooth Permission required
+* Update for Swift4
 
 ### 1.2.3 - 12 April 2017
 * Bitcode deactivated.
