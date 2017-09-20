@@ -22,14 +22,13 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [MeppSDK setAppToken:@"A1B2C3D4" forHost:@"example.com" completion:^(BOOL successful) {
+    [MeppSDK setAppToken:@"A1B2C3D4" forHost:@"example.at" completion:^(BOOL successful) {
         if (successful) {
             
             self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:NULL];
             
             self.meppManager = [[MeppManager alloc] initWithDelegate:self];
             [self.meppManager startMonitoring];
-            
             
             self.meppApiClient = [[MeppAPIClient alloc] init];
             [self.meppApiClient appConfig:^(BOOL successful, AppConfig * _Nullable appConfig, NSInteger statusCode) {
@@ -53,9 +52,9 @@
             }];
             
             Beacon *beacon = [[Beacon alloc] init];
-            beacon.uuid = @"90dc5409-c9f4-4854-bc38-94367885850e";
-            beacon.major = @"2";
-            beacon.minor = @"2003";
+            beacon.uuid = @"aaaaaaaaa-bbbb-cccc-dddd-eeeeeeee";
+            beacon.major = @"1";
+            beacon.minor = @"2";
             
             [self.meppApiClient contentByHardwareBeacon:beacon user:@"objc-client" completion:^(BOOL successful, Content * _Nullable entryContent, Content * _Nullable exitContent, NSInteger statusCode) {
                 if (successful) {
@@ -97,7 +96,7 @@
     NSLog(@"Geofences did change");
 }
 - (void)didDiscoverBeacons:(NSArray<CLBeacon *> * _Nonnull)beacons{
-    NSLog(@"Did discover beacons");
+   // NSLog(@"Did discover beacons");
 }
 - (void)shouldTrackAnalyticsEvent:(AnalyticsEvent * _Nonnull)event{}
 

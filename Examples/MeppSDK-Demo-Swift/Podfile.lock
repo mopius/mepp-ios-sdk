@@ -1,40 +1,32 @@
 PODS:
   - AFDateHelper (4.1.2)
-  - Alamofire (4.4.0)
+  - Alamofire (4.5.1)
   - AlamofireObjectMapper (4.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
-  - KontaktSDK (1.4.2)
-  - MeppSDK (1.2.1):
+  - MeppSDK (1.3.0):
     - AFDateHelper (~> 4.0)
     - Alamofire (~> 4.0)
     - AlamofireObjectMapper (~> 4.0)
-    - KontaktSDK (= 1.4.2)
     - ReachabilitySwift (~> 3)
-  - ObjectMapper (2.2.5)
+  - ObjectMapper (2.2.8)
   - ReachabilitySwift (3)
 
 DEPENDENCIES:
-  - MeppSDK (from `https://github.com/mopius/mepp-ios-sdk.git`)
+  - MeppSDK (from `~/developer/mepp-ios-sdk`)
 
 EXTERNAL SOURCES:
   MeppSDK:
-    :git: https://github.com/mopius/mepp-ios-sdk.git
-
-CHECKOUT OPTIONS:
-  MeppSDK:
-    :commit: 4115301249803406a78030ace98aa74e255cd330
-    :git: https://github.com/mopius/mepp-ios-sdk.git
+    :path: ~/developer/mepp-ios-sdk
 
 SPEC CHECKSUMS:
   AFDateHelper: b19c83daa132e398b34fbea085a1554ce07adfe9
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
-  KontaktSDK: 535eb2c30bfbaef6b545f4cded78f1a1c1ca7486
-  MeppSDK: 3cc6960f8641d8945c32b8ba64a280d03fd22670
-  ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
+  MeppSDK: bac06d4281831901e3f2afe8aef5782b061d2006
+  ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
 
-PODFILE CHECKSUM: a53d96b3682ed1522ab909524dbc49b4d97a3d70
+PODFILE CHECKSUM: 531399fcb7a7972604f0613c7c29eb93d6ee5352
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.3.1

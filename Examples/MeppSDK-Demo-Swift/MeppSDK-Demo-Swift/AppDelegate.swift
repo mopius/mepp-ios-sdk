@@ -27,9 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func setupMepp() {
-        MeppSDK.setAppToken("A1B2C3D4", forHost: "api.mepp.at", completion: {(successful) in
+        MeppSDK.setAppToken("A1B2C3D4", forHost: "example.at", completion: {(successful) in
             if successful {
-                Log.debug("MEPP SDK setup done")
+               // Log.debug("MEPP SDK setup done")
                 self.meppApiClient = MeppAPIClient()
                 
                 self.meppManager = MeppManager(delegate: self)
