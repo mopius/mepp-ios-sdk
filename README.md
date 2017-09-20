@@ -4,12 +4,9 @@
 - [Installing iOS SDK](#installing-the-ios-sdk)
     - [CocoaPods](#cocoapods)
 - [First Steps](#first-steps)
-- [Interacting with Beacons](#interacting-with-beacons)
-  - [Beacon Basic Setup](#beacon-basic-setup)
-  - [Beacon Delegate Callbacks](#beacon-delegate-callbacks)
-- [Interacting with Geofences](#interacting-with-geofences)
-  - [Geofence Basic Setup](#geofence-basic-setup)
-  - [Geofence Delegate Callbacks](#geofence-delegate-callbacks)
+- [Interacting with Mepp-Platform](#interacting-with-mepp)
+  - [Basic Setup](#mepp-basic-setup)
+  - [Delegate Callbacks](#mepp-delegate-callbacks)
 - [Communicating with the MEPP Rest API](#communicating-with-the-mepp-rest-api)
   - [MeppAPIClient](#meppapiclient)
     - [Get Application Configuration](#get-application-configuration)
@@ -126,6 +123,8 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
     return YES;
 }
 ```
+
+## Interacting with Mepp-Platform
 
 ### Basic Setup
 In our example, we have used the **AppDelegate.swift** for simplicity. You would probably want to create your own class in a real application.
