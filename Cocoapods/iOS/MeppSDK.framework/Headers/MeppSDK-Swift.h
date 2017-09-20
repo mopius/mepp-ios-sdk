@@ -516,6 +516,9 @@ SWIFT_CLASS("_TtC7MeppSDK8MetaInfo")
 
 SWIFT_CLASS("_TtC7MeppSDK5Place")
 @interface Place : NSObject
+@property (nonatomic, copy) NSString * _Nullable name;
+@property (nonatomic, strong) Content * _Nullable content;
+@property (nonatomic, strong) CLLocation * _Nullable location;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
