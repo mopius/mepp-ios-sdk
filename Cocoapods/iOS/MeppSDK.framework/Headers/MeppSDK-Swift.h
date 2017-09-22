@@ -191,6 +191,10 @@ SWIFT_MODULE_NAMESPACE_PUSH("MeppSDK")
 
 SWIFT_CLASS("_TtC7MeppSDK14AnalyticsEvent")
 @interface AnalyticsEvent : NSObject
+@property (nonatomic, copy) NSString * _Nonnull category;
+@property (nonatomic, copy) NSString * _Nonnull action;
+@property (nonatomic, copy) NSString * _Nullable label;
+@property (nonatomic, copy) NSString * _Nullable value;
 @property (nonatomic, readonly, copy) NSString * _Nonnull description;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
@@ -347,6 +351,11 @@ SWIFT_CLASS("_TtC7MeppSDK13MeppAPIClient")
 
 SWIFT_CLASS("_TtC7MeppSDK10MeppBeacon")
 @interface MeppBeacon : NSObject
+@property (nonatomic, copy) NSUUID * _Nullable proximityUUID;
+@property (nonatomic, strong) NSNumber * _Nonnull rssi;
+@property (nonatomic, strong) NSNumber * _Nonnull battery;
+@property (nonatomic, strong) NSNumber * _Nullable major;
+@property (nonatomic, strong) NSNumber * _Nullable minor;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
@@ -371,7 +380,15 @@ SWIFT_CLASS("_TtC7MeppSDK17MeppBeaconManager")
 @end
 
 
-@interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK))
+SWIFT_PROTOCOL("_TtP7MeppSDK26MeppSessionManagerDelegate_")
+@protocol MeppSessionManagerDelegate
+- (void)didFindNewContent:(Content * _Nonnull)content beacon:(Beacon * _Nonnull)beacon;
+- (void)didChangeSessionStatus:(NSString * _Nonnull)status critical:(BOOL)critical;
+- (void)shouldTrackAnalyticsEvent:(AnalyticsEvent * _Nonnull)event;
+@end
+
+
+@interface MeppBeaconManager (SWIFT_EXTENSION(MeppSDK)) <MeppSessionManagerDelegate>
 - (void)didFindNewContent:(Content * _Nonnull)content beacon:(Beacon * _Nonnull)beacon;
 - (void)didChangeSessionStatus:(NSString * _Nonnull)status critical:(BOOL)critical;
 - (void)shouldTrackAnalyticsEvent:(AnalyticsEvent * _Nonnull)event;
@@ -504,6 +521,7 @@ SWIFT_CLASS("_TtC7MeppSDK7MeppSDK")
 + (void)setAppToken:(NSString * _Nonnull)appToken forHost:(NSString * _Nonnull)apiHost completion:(void (^ _Nullable)(BOOL))completion;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
+
 
 
 SWIFT_CLASS("_TtC7MeppSDK8MetaInfo")
