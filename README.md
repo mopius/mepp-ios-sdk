@@ -578,6 +578,9 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
 
 ## Changelog
 
+### 1.3.1 - 28 September 2017
+* performance improvement
+
 ### 1.3.0 - 08 September 2017
 * MeppManager replaces GeofenceManager & BeaconManager08
 * notificationClicked & notificationDisplayed add for intern cleanup
