@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                    = 'MeppSDK'
-  spec.version                 = '1.3.1'
+  spec.version                 = '1.3.2'
   spec.summary                 = 'Mepp SDK for iOS'
   spec.author                  = { 'MEPP' => 'office@mopius.at' }
   spec.homepage                = 'https://www.mepp.at'

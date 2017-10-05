@@ -352,6 +352,7 @@ SWIFT_CLASS("_TtC7MeppSDK13MeppAPIClient")
 SWIFT_CLASS("_TtC7MeppSDK10MeppBeacon")
 @interface MeppBeacon : NSObject
 @property (nonatomic, copy) NSUUID * _Nullable proximityUUID;
+@property (nonatomic, copy) NSString * _Nullable identifier;
 @property (nonatomic, strong) NSNumber * _Nonnull rssi;
 @property (nonatomic, strong) NSNumber * _Nonnull battery;
 @property (nonatomic, strong) NSNumber * _Nullable major;

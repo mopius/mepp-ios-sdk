@@ -578,6 +578,10 @@ func didChangeBluetoothStatus(status: BluetoothStatus) {
 
 ## Changelog
 
+### 1.3.2 - 05 October 2017
+* performance improvement
+* stability improvement
+
 ### 1.3.1 - 28 September 2017
 * performance improvement
 
